@@ -1,4 +1,4 @@
-#scrpr
+# scrpr
 - Typescript
 - Serverless
 - GraphQL?
@@ -7,3 +7,10 @@
 - Cognito
 - React
 - Storybook
+
+## Services
+- Configurations
+    - Target
+    - Regex
+    - Interval
+- Results
