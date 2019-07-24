@@ -1,0 +1,51 @@
+# Reference https://gist.github.com/TimCoates/13b1ae454154425f7afc421707db2f86#file-serverless-yml-L43
+Type: AWS::CloudFront::Distribution
+Properties:
+  DistributionConfig:
+    Enabled: "true"
+    DefaultRootObject: "index.html"
+    DefaultCacheBehavior:
+      AllowedMethods:
+      - GET
+      - HEAD
+      - OPTIONS
+      TargetOriginId: myS3Origin
+      ForwardedValues:
+        QueryString: "false"
+      ViewerProtocolPolicy: allow-all
+      MinTTL: "0"
+      MaxTTL: "6"
+      DefaultTTL: "3"
+    CacheBehaviors:
+    - AllowedMethods:
+      - GET
+      - HEAD
+      - OPTIONS
+      - POST
+      - PUT
+      - PATCH
+      - DELETE
+      MinTTL: "0"
+      MaxTTL: "0"
+      DefaultTTL: "0"
+      TargetOriginId: myAPIOrigin
+      ForwardedValues:
+        QueryString: 'true'
+        Cookies:
+          Forward: all
+      ViewerProtocolPolicy: allow-all
+      PathPattern: api/*
+    Origins:
+      - DomainName:
+         Fn::Join:
+          - ""
+          - - Ref: ApiGatewayRestApi
+            - ".execute-api.us-east-1.amazonaws.com"
+        Id: myAPIOrigin
+        OriginPath: /dev
+        CustomOriginConfig:
+          OriginProtocolPolicy: https-only
+      - DomainName: aperkkio.scrpr.s3.amazonaws.com
+        Id: myS3Origin
+        S3OriginConfig:
+          OriginAccessIdentity: ''

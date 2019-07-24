@@ -1,0 +1,16 @@
+Type: AWS::Cognito::UserPool
+Properties:
+  AutoVerifiedAttributes:
+    - email
+  Policies:
+    PasswordPolicy:
+      MinimumLength: 7
+      RequireLowercase: true
+      RequireNumbers: true
+      RequireUppercase: true
+  Schema:
+    - AttributeDataType: String
+      Mutable: false
+      Name: email
+      Required: true
+  UserPoolName: scrpr-user-pool

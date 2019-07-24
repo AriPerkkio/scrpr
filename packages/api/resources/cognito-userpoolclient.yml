@@ -1,0 +1,6 @@
+Type: AWS::Cognito::UserPoolClient
+Properties:
+  ClientName: scrpr-client
+  GenerateSecret: false
+  UserPoolId:
+    Ref: UserPool

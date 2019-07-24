@@ -1,0 +1,9 @@
+handler: functions/HelloWorld/handler.helloWorld
+events:
+  - http:
+      path: api/hello-world
+      method: get
+      authorizer:
+        type: COGNITO_USER_POOLS
+        authorizerId:
+          Ref: Authorizer

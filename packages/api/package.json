@@ -1,0 +1,25 @@
+{
+  "name": "scrpr-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install:dynamodb": "serverless dynamodb install",
+    "start": "nodemon --watch functions --exec serverless offline start",
+    "deploy": "serverless deploy -v",
+    "deploy:get-data": "serverless deploy function --function getData",
+    "deploy:post-data": "serverless deploy function --function postData",
+    "undeploy": "serverless remove",
+    "test": "jest",
+    "test:server": "start-server-and-test :5000/api/generic-data"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "serverless": "^1.48.2",
+    "serverless-dynamodb-local": "^0.2.38",
+    "serverless-offline": "^5.8.0",
+    "serverless-stack-output": "^0.2.3",
+    "start-server-and-test": "^1.9.1"
+  }
+}

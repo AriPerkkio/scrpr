@@ -1,0 +1,12 @@
+Type: AWS::DynamoDB::Table
+Properties:
+  TableName: scrpr-table
+  AttributeDefinitions:
+    - AttributeName: "userId"
+      AttributeType: "S"
+  KeySchema:
+    - AttributeName: "userId"
+      KeyType: "HASH"
+  ProvisionedThroughput:
+    ReadCapacityUnits: 5
+    WriteCapacityUnits: 5

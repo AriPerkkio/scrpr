@@ -1,0 +1,9 @@
+Type: AWS::ApiGateway::Authorizer
+Properties:
+  IdentitySource: method.request.header.X-Authorization # Cloudfront overwrites Authorization header
+  Name: test-authorizer
+  RestApiId:
+    Ref: ApiGatewayRestApi
+  Type: COGNITO_USER_POOLS
+  ProviderARNs:
+    - Fn::GetAtt: [UserPool, Arn]
