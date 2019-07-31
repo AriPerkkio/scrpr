@@ -36,7 +36,7 @@ const onFailure = error => ({
     body: JSON.stringify({ error }),
 });
 
-module.exports.getData = async event =>
+module.exports.helloWorld = async event =>
     await getData(event)
         .then(onSuccess)
         .catch(onFailure);

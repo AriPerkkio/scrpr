@@ -125,7 +125,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/scrpr-service/dev/1563949727061-2019-07-24T06:28:47.061Z/scrpr-service.zip"
+          "S3Key": "serverless/scrpr-service/dev/1563989316914-2019-07-24T17:28:36.914Z/scrpr-service.zip"
         },
         "FunctionName": "scrpr-service-dev-helloworld",
         "Handler": "functions/HelloWorld/handler.helloWorld",
@@ -228,7 +228,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1563949714747": {
+    "ApiGatewayDeployment1563989304536": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
