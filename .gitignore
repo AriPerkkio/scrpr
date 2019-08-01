@@ -63,3 +63,9 @@ typings/
 # api
 cf-output.json
 .serverless/
+
+# editors
+.vscode
+
+# generated
+build
