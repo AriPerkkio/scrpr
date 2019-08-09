@@ -26,11 +26,13 @@ const LoginData = (email: string, password: string): AuthenticationDetails =>
         Password: password,
     });
 
-const resultHandler = (
-    resolve: (data: void) => void,
-    reject: (error: Error) => void
-): any => (error: Error, result: void) =>
-    error ? reject(error) : resolve(result);
+const resultHandler = <T>(
+    resolve: (data: T) => void,
+    reject: (error: Error | undefined) => void
+): ((error: Error | undefined, result: T) => void) => (
+    error: Error | undefined,
+    result: T
+): void => (error ? reject(error) : resolve(result));
 
 const verify = (email: string, verificationCode: string): Promise<void> =>
     new Promise((resolve, reject) => {
@@ -40,7 +42,7 @@ const verify = (email: string, verificationCode: string): Promise<void> =>
         user.confirmRegistration(verificationCode, true, handler);
     });
 
-const signup = (email: string, password: string): Promise<void> =>
+const signup = (email: string, password: string): Promise<ISignUpResult> =>
     new Promise((resolve, reject) => {
         const attributeList = [
             new CognitoUserAttribute({ Name: 'email', Value: email }),
