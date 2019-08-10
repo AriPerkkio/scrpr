@@ -7,7 +7,7 @@ plugins:
 
 custom:
   output:
-    file: ../client/src/cf-output.json
+    file: cf-output.json
   serverless-offline:
     port: 5000
   dynamodb:
