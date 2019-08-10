@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { Suspense } from 'react';
+import { Route, Switch, HashRouter } from 'react-router-dom';
 
-const App: React.FC = () => {
-  return (<div>Hello world</div>);
-}
+import Routes from 'views/Routes';
+
+const App: React.FC = () => (
+    <HashRouter>
+        <Suspense fallback='Loading...'>
+            <Switch>
+                {Routes.map(props => (
+                    <Route {...props} key={props.path} />
+                ))}
+            </Switch>
+        </Suspense>
+    </HashRouter>
+);
 
 export default App;

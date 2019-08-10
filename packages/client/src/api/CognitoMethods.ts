@@ -7,7 +7,7 @@ import {
     ISignUpResult,
 } from 'amazon-cognito-identity-js';
 
-import config from '../../../api/cf-output.json';
+import config from 'cf-output.json';
 
 const userPool = new CognitoUserPool({
     UserPoolId: config.UserPool,

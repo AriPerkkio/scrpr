@@ -2,6 +2,10 @@ import React, { useReducer } from 'react';
 import styled from 'styled-components';
 
 import Input from './Input';
+import Button from 'components/Button';
+import ErrorField from 'components/ErrorField';
+import { useLogin } from 'hooks';
+import { white } from 'styles/variables';
 
 interface LoginState {
     email: string;
@@ -9,10 +13,19 @@ interface LoginState {
 }
 
 const Wrapper = styled.div`
-    border: 1px solid red;
+    border: 2px solid ${white};
+    border-radius: 2rem;
+    padding: 1rem 2rem;
+    margin: 20% auto;
+    width: 80%;
 `;
 
-const BASE_CLASS = 'login-form';
+const Header = styled.h1`
+    font-size: 1.5rem;
+    color: ${white};
+    margin-bottom: 2rem;
+`;
+
 const initialState = { email: '', password: '' };
 const reducer = (state: LoginState, next: {}): LoginState => ({
     ...state,
@@ -20,17 +33,21 @@ const reducer = (state: LoginState, next: {}): LoginState => ({
 });
 
 const LoginForm: React.SFC = () => {
-    const [state, dispatch] = useReducer(reducer, initialState);
+    const [{ email, password }, dispatch] = useReducer(reducer, initialState);
+    const { onSubmit, isLoading, error } = useLogin();
 
     return (
         <Wrapper>
-            <h1>Login</h1>
+            <Header>Login</Header>
+
+            {isLoading && 'Loading...'}
+            {error && <ErrorField>{error}</ErrorField>}
+
             <form>
                 <Input
                     id='email'
                     type='email'
-                    value={state.email}
-                    className={`${BASE_CLASS}-input`}
+                    value={email}
                     onChange={dispatch}>
                     Email
                 </Input>
@@ -38,11 +55,14 @@ const LoginForm: React.SFC = () => {
                 <Input
                     id='password'
                     type='password'
-                    value={state.password}
-                    className={`${BASE_CLASS}-input`}
+                    value={password}
                     onChange={dispatch}>
                     Password
                 </Input>
+
+                <Button onClick={() => onSubmit(email, password)}>
+                    Submit
+                </Button>
             </form>
         </Wrapper>
     );
