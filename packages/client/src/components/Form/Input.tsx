@@ -33,7 +33,6 @@ const Input: React.SFC<InputProps> = ({ onChange, children, id, ...props }) => (
         <InputEl
             {...props}
             id={id}
-            autoComplete='off'
             onChange={({ target: { value } }) => onChange({ [id]: value })}
         />
     </>

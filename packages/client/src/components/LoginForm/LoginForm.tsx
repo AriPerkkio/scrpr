@@ -1,9 +1,9 @@
 import React, { useReducer } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import Input from './Input';
+import Form, { Input } from '../Form';
 import Button from 'components/Button';
-import ErrorField from 'components/ErrorField';
 import { useLogin } from 'hooks';
 import { white } from 'styles/variables';
 
@@ -12,18 +12,15 @@ interface LoginState {
     password: string;
 }
 
-const Wrapper = styled.div`
-    border: 2px solid ${white};
-    border-radius: 2rem;
-    padding: 1rem 2rem;
-    margin: 20% auto;
-    width: 80%;
-`;
+const LinkContainer = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    width: 15rem;
 
-const Header = styled.h1`
-    font-size: 1.5rem;
-    color: ${white};
-    margin-bottom: 2rem;
+    a {
+        outline: 0;
+        color: ${white};
+    }
 `;
 
 const initialState = { email: '', password: '' };
@@ -37,34 +34,25 @@ const LoginForm: React.SFC = () => {
     const { onSubmit, isLoading, error } = useLogin();
 
     return (
-        <Wrapper>
-            <Header>Login</Header>
+        <Form header='Login' isLoading={isLoading} error={error}>
+            <LinkContainer>
+                <Link to='signup'>Signup</Link>
+            </LinkContainer>
 
-            {isLoading && 'Loading...'}
-            {error && <ErrorField>{error}</ErrorField>}
+            <Input id='email' type='email' value={email} onChange={dispatch}>
+                Email
+            </Input>
 
-            <form>
-                <Input
-                    id='email'
-                    type='email'
-                    value={email}
-                    onChange={dispatch}>
-                    Email
-                </Input>
+            <Input
+                id='password'
+                type='password'
+                value={password}
+                onChange={dispatch}>
+                Password
+            </Input>
 
-                <Input
-                    id='password'
-                    type='password'
-                    value={password}
-                    onChange={dispatch}>
-                    Password
-                </Input>
-
-                <Button onClick={() => onSubmit(email, password)}>
-                    Submit
-                </Button>
-            </form>
-        </Wrapper>
+            <Button onClick={() => onSubmit(email, password)}>Submit</Button>
+        </Form>
     );
 };
 

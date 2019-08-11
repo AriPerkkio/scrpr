@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Signup: React.FC = () => {
-    return <div>Signup view</div>;
-};
+import SignupForm from 'components/SignupForm';
+
+const Signup: React.FC = () => <SignupForm />;
 
 export default Signup;

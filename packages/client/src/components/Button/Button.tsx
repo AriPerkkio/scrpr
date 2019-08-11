@@ -1,30 +1,41 @@
-import React, { useReducer } from 'react';
-import classNames from 'classnames';
+import React, { useReducer }  from 'react';
+import styled from 'styled-components';
+
+import { white } from 'styles/variables';
 
 export interface ButtonProps {
     children?: React.ReactNode;
-    className?: string;
     onClick?: (e: React.SyntheticEvent) => void;
 }
 
-const Button: React.SFC<ButtonProps> = ({ onClick, className, ...props }) => {
-    const [clicked, toggle] = useReducer(s => !s, false);
+const ButtonEl = styled.button`
+    border-radius: 2rem;
+    border: 1px solid ${white};
+    padding: .2rem .5rem;
+    color: ${white};
+    background-color: transparent;
+    outline: 0;
+
+    &:hover, &:focus {
+        box-shadow: 0 0 .3rem ${white};
+    }
+`;
+
+const Button: React.SFC<ButtonProps> = ({ onClick, ...props }) => {
+    const [clicked, setClicked] = useReducer(s => !s, false);
 
     const _onClick = (event: React.SyntheticEvent): void => {
-        toggle({});
+        setClicked({});
         onClick && onClick(event);
     };
 
-    const _className = classNames('button', className, { clicked });
-
     return (
-        <button
+        <ButtonEl
+            aria-pressed={clicked}
             onClick={_onClick}
-            className={_className}
-            type='button'
             {...props}>
             {props.children}
-        </button>
+        </ButtonEl>
     );
 };
 
