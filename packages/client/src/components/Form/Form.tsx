@@ -22,11 +22,16 @@ const Header = styled.h1`
     margin-bottom: 2rem;
 `;
 
+const Loading = styled.div`
+    color: ${white};
+    margin: 2rem 0;
+`;
+
 const Form: React.SFC<FormProps> = ({ isLoading, error, header, children }) => (
     <Wrapper>
         <Header>{header}</Header>
 
-        {isLoading && 'Loading...'}
+        {isLoading && <Loading>Loading...</Loading>}
         {error && <ErrorField>{error}</ErrorField>}
 
         <form onSubmit={e => e.preventDefault()}>{children}</form>

@@ -1,6 +1,7 @@
 import { useReducer } from 'react';
 
 import Api from 'api';
+import { useRouter } from 'hooks';
 
 interface UseLoginState {
     isLoading: boolean;
@@ -22,12 +23,14 @@ const reducer = (state: UseLoginState, next: {}): UseLoginState => ({
 
 const useLogin = (): UseLoginProps => {
     const [{ isLoading, error }, dispatch] = useReducer(reducer, initialState);
+    const { history } = useRouter();
 
     const onSubmit = (email: string, password: string): void => {
         dispatch({ isLoading: true });
 
         Api.login(email, password)
             .then(() => dispatch({ isLoading: false }))
+            .then(() => history.push('/auth/'))
             .catch(error => dispatch({ isLoading: false, error }));
     };
 

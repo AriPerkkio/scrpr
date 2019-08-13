@@ -1,6 +1,7 @@
 import { useReducer } from 'react';
 
 import Api from 'api';
+import { useRouter } from 'hooks';
 
 interface UseSignupState {
     isLoading: boolean;
@@ -25,6 +26,7 @@ const reducer = (state: UseSignupState, next: {}): UseSignupState => ({
 
 const UseSignup = (): UseSignupProps => {
     const [state, dispatch] = useReducer(reducer, initialState);
+    const { history } = useRouter();
 
     const onSignup = (email: string, password: string): void => {
         dispatch({ isLoading: true });
@@ -39,6 +41,7 @@ const UseSignup = (): UseSignupProps => {
 
         Api.verify(email, verificationCode)
             .then(() => dispatch({ isLoading: false, isVerifying: false }))
+            .then(() => history.push('/login'))
             .catch(error => dispatch({ isLoading: false, error }));
     };
 

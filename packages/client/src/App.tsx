@@ -1,16 +1,15 @@
 import React, { Suspense } from 'react';
-import { Route, Switch, HashRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 
 import Routes from 'views/Routes';
+import Menu from 'components/Menu';
 
 const App: React.FC = () => (
     <HashRouter>
+        <Menu />
+
         <Suspense fallback='Loading...'>
-            <Switch>
-                {Routes.map(props => (
-                    <Route {...props} key={props.path} />
-                ))}
-            </Switch>
+            <Routes />
         </Suspense>
     </HashRouter>
 );
