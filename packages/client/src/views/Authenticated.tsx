@@ -1,20 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
-import Api from 'api';
-import { useRouter } from 'hooks';
+import { useAuthentication } from 'hooks';
 
 const Authenticated: React.FC = ({ children }) => {
-    const [isAuthenticated, setAuthenticated] = useState(false);
-    const { history } = useRouter();
-
-    useEffect(() => {
-        Api.getAuthToken()
-            .then(() => setAuthenticated(true))
-            .catch(() => history.push('/login'));
-    }, [history]);
+    const isAuthenticated = useAuthentication();
 
     if (!isAuthenticated) {
-        return <div>Loading....</div>;
+        return null;
     }
 
     // Typescript forces to return fragment instead of just children

@@ -1,5 +1,5 @@
 import React, { lazy } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Redirect, Switch } from 'react-router-dom';
 import Authenticated from './Authenticated';
 
 const publicRoutes = [
@@ -13,13 +13,15 @@ const publicRoutes = [
     },
 ];
 
-const authenticatedRoutes = [
+export const authenticatedRoutes = [
     {
         path: '/(home|)',
+        navigationName: 'Home',
         component: lazy(() => import('./Home')),
     },
     {
         path: '/results',
+        navigationName: 'Results',
         component: lazy(() => import('./Results')),
     },
 ];
@@ -32,15 +34,21 @@ const Routes: React.SFC = () => (
 
         <Route path='/auth/'>
             <Authenticated>
-                {authenticatedRoutes.map(({ path, component }) => (
-                    <Route
-                        key={path}
-                        path={`/auth${path}`}
-                        component={component}
-                    />
-                ))}
+                <Switch>
+                    {authenticatedRoutes.map(({ path, component }) => (
+                        <Route
+                            key={path}
+                            path={`/auth${path}`}
+                            component={component}
+                        />
+                    ))}
+
+                    <Redirect to='/auth/home' />
+                </Switch>
             </Authenticated>
         </Route>
+
+        <Redirect to='/auth/home' />
     </Switch>
 );
 

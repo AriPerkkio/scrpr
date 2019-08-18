@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useReducer, useLayoutEffect } from 'react';
 
 import Api from 'api';
 import { useRouter } from 'hooks';
@@ -33,6 +33,14 @@ const useLogin = (): UseLoginProps => {
             .then(() => history.push('/auth/'))
             .catch(error => dispatch({ isLoading: false, error }));
     };
+
+    useLayoutEffect(() => {
+        Api.getAuthToken()
+            .then(() => history.push('/auth'))
+            .catch(() => {
+                // User is not logged in as expected
+            });
+    }, [history]);
 
     return {
         isLoading,
