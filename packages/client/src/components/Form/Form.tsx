@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import ErrorField from 'components/ErrorField';
-import { white } from 'styles/variables';
+import { green, yellow } from 'styles/variables';
 
 export interface FormProps {
     isLoading: boolean;
@@ -18,12 +18,12 @@ const Wrapper = styled.div`
 
 const Header = styled.h1`
     font-size: 1.5rem;
-    color: ${white};
+    color: ${green};
     margin-bottom: 2rem;
 `;
 
 const Loading = styled.div`
-    color: ${white};
+    color: ${yellow};
     margin: 2rem 0;
 `;
 

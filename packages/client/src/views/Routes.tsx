@@ -17,11 +17,13 @@ export const authenticatedRoutes = [
     {
         path: '/(home|)',
         navigationName: 'Home',
+        icon: 'home',
         component: lazy(() => import('./Home')),
     },
     {
         path: '/results',
         navigationName: 'Results',
+        icon: 'list',
         component: lazy(() => import('./Results')),
     },
 ];

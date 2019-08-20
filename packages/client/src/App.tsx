@@ -3,18 +3,18 @@ import { HashRouter } from 'react-router-dom';
 
 import Routes from 'views/Routes';
 import Menu from 'components/Menu';
-import { RootContainer } from 'styles/layouts';
+import { RootContainer, MainContent } from 'styles/layouts';
 
 const App: React.FC = () => (
     <HashRouter>
         <RootContainer>
             <Menu />
 
-            <main>
+            <MainContent>
                 <Suspense fallback='Loading...'>
                     <Routes />
                 </Suspense>
-            </main>
+            </MainContent>
         </RootContainer>
     </HashRouter>
 );

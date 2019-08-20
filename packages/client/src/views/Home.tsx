@@ -1,7 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+
+import { useGlobalState } from 'hooks';
 
 const Home: React.FC = () => {
-    return <div>Home view</div>;
+    const [state, setGlobalState] = useGlobalState();
+
+    useEffect(() => {
+        setGlobalState({ home: 'set home to global state' });
+    });
+
+    return (
+        <>
+            <div>Home view</div>
+            <pre>{JSON.stringify(state, null, 4)}</pre>
+        </>
+    );
 };
 
 export default Home;

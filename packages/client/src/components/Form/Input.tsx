@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { white } from 'styles/variables';
+import { green, blue, background } from 'styles/variables';
 
 export interface InputProps {
     type: string;
@@ -12,17 +12,22 @@ export interface InputProps {
 }
 
 const InputEl = styled.input`
+    cursor: pointer;
     border-radius: 2rem;
+    border-color: ${green};
     display: block;
     min-width: 15rem;
     margin-bottom: 1rem;
     outline: 0;
-    padding-left: 0.5rem;
-    padding-top: 0.1rem;
+    padding-left: 0.75rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    color: ${blue};
+    background-color: ${background};
 `;
 
 const Label = styled.label`
-    color: ${white};
+    color: ${green};
     display: block;
     margin-bottom: 0.5rem;
 `;

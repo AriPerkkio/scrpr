@@ -1,7 +1,7 @@
-import React, { useReducer }  from 'react';
+import React, { useReducer } from 'react';
 import styled from 'styled-components';
 
-import { white } from 'styles/variables';
+import { green } from 'styles/variables';
 
 export interface ButtonProps {
     children?: React.ReactNode;
@@ -10,14 +10,16 @@ export interface ButtonProps {
 
 const ButtonEl = styled.button`
     border-radius: 2rem;
-    border: 1px solid ${white};
-    padding: .2rem .5rem;
-    color: ${white};
+    border: 1px solid ${green};
+    padding: 0.25rem 0.75rem;
+    color: ${green};
     background-color: transparent;
     outline: 0;
+    cursor: pointer;
 
-    &:hover, &:focus {
-        box-shadow: 0 0 .3rem ${white};
+    &:hover,
+    &:focus {
+        box-shadow: 0 0 0.3rem ${green};
     }
 `;
 
@@ -30,10 +32,7 @@ const Button: React.SFC<ButtonProps> = ({ onClick, ...props }) => {
     };
 
     return (
-        <ButtonEl
-            aria-pressed={clicked}
-            onClick={_onClick}
-            {...props}>
+        <ButtonEl aria-pressed={clicked} onClick={_onClick} {...props}>
             {props.children}
         </ButtonEl>
     );

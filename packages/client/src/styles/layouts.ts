@@ -1,11 +1,15 @@
 import styled from 'styled-components';
-import { white, gray, firaCode } from './variables';
+import { foreground, background, firaCode } from './variables';
 
 export const RootContainer = styled.div`
     height: 100%;
-    background-color: ${gray};
+    background-color: ${background};
     display: flex;
 
-    color: ${white};
+    color: ${foreground};
     font-family: ${firaCode};
+`;
+
+export const MainContent = styled.main`
+    margin: 2rem;
 `;

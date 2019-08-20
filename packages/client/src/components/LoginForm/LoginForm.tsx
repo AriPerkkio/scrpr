@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Form, { Input } from '../Form';
 import Button from 'components/Button';
 import { useLogin } from 'hooks';
-import { white } from 'styles/variables';
+import { blue } from 'styles/variables';
 
 interface LoginState {
     email: string;
@@ -19,7 +19,7 @@ const LinkContainer = styled.div`
 
     a {
         outline: 0;
-        color: ${white};
+        color: ${blue};
     }
 `;
 
