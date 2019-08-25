@@ -2,6 +2,7 @@ service: scrpr-service
 
 plugins:
   - serverless-stack-output
+  - serverless-plugin-typescript
   - serverless-dynamodb-local
   - serverless-offline
 

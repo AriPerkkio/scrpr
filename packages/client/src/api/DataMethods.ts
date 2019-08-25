@@ -14,8 +14,5 @@ const getConfig = ({
     body: body ? JSON.stringify(body) : undefined,
 });
 
-export const getHelloWorld = (authToken: string): Promise<void> => {
-    return fetch('/api/hello-world', getConfig({ authToken })).then(r =>
-        r.json()
-    );
-};
+export const getHelloWorld = (authToken: string): Promise<void> =>
+    fetch('/api/hello-world', getConfig({ authToken })).then(r => r.json());

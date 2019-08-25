@@ -8,8 +8,7 @@ class Api {
     public logout = logout;
     public getAuthToken = getAuthToken;
 
-    public getHelloWorld = () =>
-        this.getAuthToken().then(token => getHelloWorld(token));
+    public getHelloWorld = () => this.getAuthToken().then(getHelloWorld);
 }
 
 export default new Api();

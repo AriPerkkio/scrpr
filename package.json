@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "workspaces": [
-      "packages/api",
-      "packages/batch",
-      "packages/client"
+    "packages/api",
+    "packages/batch",
+    "packages/client"
   ],
   "private": true,
   "scripts": {
@@ -32,7 +32,7 @@
     "eslint-config-react-app": "^5.0.0",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.14.3",
-    "jest": "^24.8.0",
+    "jest": "24.8.0",
     "live-server": "^1.2.1",
     "nodemon": "^1.19.1",
     "prettier": "^1.18.2",
