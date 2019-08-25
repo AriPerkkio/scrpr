@@ -1,13 +1,16 @@
 import React, { useEffect } from 'react';
 
+import Api from 'api';
 import { useGlobalState } from 'hooks';
 
 const Results: React.FC = () => {
     const [state, setGlobalState] = useGlobalState();
 
     useEffect(() => {
-        setGlobalState({ results: 'set results to global state' });
-    });
+        Api.getHelloWorld()
+            .then(result => setGlobalState({ result }))
+            .catch(error => setGlobalState({ error }));
+    }, [setGlobalState]);
 
     return (
         <>

@@ -45,7 +45,7 @@ Properties:
         OriginPath: /dev
         CustomOriginConfig:
           OriginProtocolPolicy: https-only
-      - DomainName: aperkkio.scrpr.s3.amazonaws.com
+      - DomainName: scrpr-client.s3.amazonaws.com
         Id: myS3Origin
         S3OriginConfig:
           OriginAccessIdentity: ''

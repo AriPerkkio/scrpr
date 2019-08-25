@@ -7,7 +7,7 @@ const Home: React.FC = () => {
 
     useEffect(() => {
         setGlobalState({ home: 'set home to global state' });
-    });
+    }, [setGlobalState]);
 
     return (
         <>
