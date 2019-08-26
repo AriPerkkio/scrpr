@@ -1,4 +1,4 @@
-handler: functions/HelloWorld/handler.helloWorld
+handler: functions/HelloWorld/handler.helloworld
 events:
   - http:
       path: api/hello-world

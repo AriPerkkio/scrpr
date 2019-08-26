@@ -3,7 +3,6 @@ service: scrpr-service
 plugins:
   - serverless-stack-output
   - serverless-plugin-typescript
-  - serverless-dynamodb-local
   - serverless-offline
 
 custom:
@@ -11,9 +10,6 @@ custom:
     file: cf-output.json
   serverless-offline:
     port: 5000
-  dynamodb:
-    start:
-      migrate: true
 
 provider:
   name: aws
@@ -21,21 +17,10 @@ provider:
   apiName: scrpr-api
   versionFunctions: false
   endpointType: regional
-  iamRoleStatements:
-    - Effect: Allow
-      Action:
-        - dynamodb:DescribeTable
-        - dynamodb:Query
-        - dynamodb:Scan
-        - dynamodb:GetItem
-        - dynamodb:PutItem
-        - dynamodb:UpdateItem
-        - dynamodb:DeleteItem
-      Resource:
-        - Fn::GetAtt: [ DynamoDbTable, Arn ]
 
 functions:
   helloworld: ${file(./functions/HelloWorld/function-hello-world.yml)}
+# TODO: unauthorized /userpool endpoint
 
 resources:
   Resources:
@@ -43,7 +28,6 @@ resources:
     Authorizer: ${file(./resources/cognito-authorizer.yml)}
     UserPool: ${file(./resources/cognito-userpool.yml)}
     UserPoolClient: ${file(./resources/cognito-userpoolclient.yml)}
-    DynamoDbTable: ${file(./resources/dynamodb-table.yml)}
 
   Outputs:
     CloudFrontDomainName:
@@ -61,6 +45,3 @@ resources:
     StacksRegion:
       Value:
         Ref: AWS::Region
-    DbTableName:
-      Value:
-        Ref: DynamoDbTable

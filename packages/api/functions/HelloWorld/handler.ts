@@ -24,12 +24,13 @@ const onFailure = (error: {}): APIGatewayProxyResult => ({
     body: JSON.stringify({ error }),
 });
 
-module.exports.helloWorld = (event: APIGatewayEvent) => {
-    return new Promise((resolve, reject) => {
+export const helloworld = (
+    event: APIGatewayEvent
+): Promise<APIGatewayProxyResult> =>
+    new Promise((resolve, reject) => {
         try {
             resolve(onSuccess(parseRequest(event)));
         } catch (error) {
             reject(onFailure(error));
         }
     });
-};
