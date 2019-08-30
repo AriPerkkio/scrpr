@@ -10,6 +10,10 @@ const Results: React.FC = () => {
         Api.getHelloWorld()
             .then(result => setGlobalState({ result }))
             .catch(error => setGlobalState({ error }));
+
+        Api.postGraphQL()
+            .then(gqlResult => setGlobalState({ gqlResult }))
+            .catch(gqlError => setGlobalState({ gqlError }));
     }, [setGlobalState]);
 
     return (

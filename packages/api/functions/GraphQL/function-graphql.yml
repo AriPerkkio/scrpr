@@ -1,8 +1,8 @@
-handler: functions/HelloWorld/handler.handler
+handler: functions/GraphQL/handler.handler
 events:
   - http:
-      path: api/hello-world
-      method: get
+      path: api/graphql
+      method: post
       authorizer:
         type: COGNITO_USER_POOLS
         authorizerId:

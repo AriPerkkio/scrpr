@@ -2,7 +2,7 @@ service: scrpr-service
 
 plugins:
   - serverless-stack-output
-  - serverless-plugin-typescript
+  - serverless-webpack
   - serverless-offline
 
 custom:
@@ -10,6 +10,8 @@ custom:
     file: cf-output.json
   serverless-offline:
     port: 5000
+  webpack:
+    packager: 'yarn'
 
 provider:
   name: aws
@@ -19,8 +21,8 @@ provider:
   endpointType: regional
 
 functions:
-  helloworld: ${file(./functions/HelloWorld/function-hello-world.yml)}
-# TODO: unauthorized /userpool endpoint
+  helloworld: ${file(functions/HelloWorld/function-hello-world.yml)}
+  graphql: ${file(functions/GraphQL/function-graphql.yml)}
 
 resources:
   Resources:
@@ -42,6 +44,3 @@ resources:
     UserPool:
       Value:
         Ref: UserPool
-    StacksRegion:
-      Value:
-        Ref: AWS::Region

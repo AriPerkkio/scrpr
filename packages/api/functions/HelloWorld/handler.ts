@@ -24,7 +24,7 @@ const onFailure = (error: {}): APIGatewayProxyResult => ({
     body: JSON.stringify({ error }),
 });
 
-export const helloworld = (
+module.exports.handler = (
     event: APIGatewayEvent
 ): Promise<APIGatewayProxyResult> =>
     new Promise((resolve, reject) => {

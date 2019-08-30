@@ -16,3 +16,9 @@ const getConfig = ({
 
 export const getHelloWorld = (authToken: string): Promise<void> =>
     fetch('/api/hello-world', getConfig({ authToken })).then(r => r.json());
+
+export const postGraphQL = (authToken: string): Promise<void> =>
+    fetch(
+        '/api/graphql',
+        getConfig({ authToken, body: { query: '{ hello }' } })
+    ).then(r => r.json());
