@@ -7,12 +7,15 @@
         "build": "webpack --mode=production",
         "deploy": "serverless deploy -v",
         "deploy:fn": "serverless deploy function --function",
-        "undeploy": "serverless remove"
+        "undeploy": "serverless remove",
+        "validate": "serverless deploy --noDeploy -v"
     },
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "apollo-server-lambda": "^2.9.0"
+        "apollo-server-lambda": "^2.9.0",
+        "knex": "^0.19.3",
+        "pg": "^7.12.1"
     },
     "devDependencies": {
         "@types/aws-lambda": "^8.10.31",

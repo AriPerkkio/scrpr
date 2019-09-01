@@ -1,0 +1,12 @@
+Type: AWS::RDS::DBCluster
+Properties:
+  DatabaseName: scrpr_database
+  DBClusterIdentifier: scrpr-cluster
+  Engine: aurora-postgresql
+  EngineMode: serverless
+  MasterUsername:
+  MasterUserPassword:
+  ScalingConfiguration:
+    AutoPause: true
+    MaxCapacity: 2
+    MinCapacity: 2

@@ -12,6 +12,10 @@ custom:
     port: 5000
   webpack:
     packager: 'yarn'
+    includeModules:
+      forceInclude:
+        - knex # webpack fails to bundle knex
+        - pg
 
 provider:
   name: aws
@@ -26,10 +30,11 @@ functions:
 
 resources:
   Resources:
-    CloudFrontDistribution: ${file(./resources/cloudfront.yml)}
-    Authorizer: ${file(./resources/cognito-authorizer.yml)}
-    UserPool: ${file(./resources/cognito-userpool.yml)}
-    UserPoolClient: ${file(./resources/cognito-userpoolclient.yml)}
+    CloudFrontDistribution: ${file(resources/cloudfront.yml)}
+    Authorizer: ${file(resources/cognito-authorizer.yml)}
+    UserPool: ${file(resources/cognito-userpool.yml)}
+    UserPoolClient: ${file(resources/cognito-userpoolclient.yml)}
+    Database: ${file(resources/aurora-postgresqldatabase.yml)}
 
   Outputs:
     CloudFrontDomainName:

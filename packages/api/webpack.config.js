@@ -1,13 +1,13 @@
 /* eslint-disable */
 const slsw = require('serverless-webpack');
 
-console.log('Entries');
-console.log(slsw.lib.entries);
-
 module.exports = {
-    mode: 'production',
+    mode: 'development',
     entry: slsw.lib.entries,
     target: 'node',
+    optimization: {
+        minimize: false,
+    },
     module: {
         rules: [
             {
@@ -16,6 +16,10 @@ module.exports = {
                 exclude: /node_modules/,
             },
         ],
+    },
+    externals: {
+        knex: 'commonjs knex', // webpack fails to bundle knex
+        ws: 'ws',
     },
     resolve: {
         extensions: ['.ts', '.mjs', '.js'],
