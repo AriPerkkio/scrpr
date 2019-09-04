@@ -4,22 +4,25 @@ const pg = knex({
     client: 'pg',
     connection: {
         host: '',
-        user: '',
+        user: 'scrpr_user',
         password: '',
-        database: '',
+        database: 'scrpr_database',
     },
-    searchPath: ['knex', 'public'],
 });
 
 export const hello = async (): Promise<string> => {
     try {
+        console.log('Starting query');
+
         const result = await pg('hello_world')
-            .withSchema('public')
             .select('text')
             .first();
 
+        console.log('Success', result.text);
+
         return result.text;
     } catch (e) {
+        console.log('Error', e);
         return `Error, ${e}`;
     }
 };

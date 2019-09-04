@@ -1,0 +1,11 @@
+DependsOn: ScrprVPC
+Type: AWS::EC2::Subnet
+Properties:
+  VpcId:
+    Ref: ScrprVPC
+  AvailabilityZone: ${self:provider.region}b
+  CidrBlock: 10.0.0.64/26
+  Tags:
+    -
+      Key: "Name"
+      Value: "ScrprSubnetB"

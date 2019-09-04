@@ -8,7 +8,8 @@
         "deploy": "serverless deploy -v",
         "deploy:fn": "serverless deploy function --function",
         "undeploy": "serverless remove",
-        "validate": "serverless deploy --noDeploy -v"
+        "validate": "serverless deploy --noDeploy -v",
+        "log:fn": "serverless logs -t -f"
     },
     "author": "",
     "license": "ISC",

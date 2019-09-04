@@ -23,6 +23,12 @@ provider:
   apiName: scrpr-api
   versionFunctions: false
   endpointType: regional
+  vpc: # Automatically adds AWSLambdaVPCAccessExecutionRole
+    securityGroupIds:
+      - Ref: SecurityGroup
+    subnetIds:
+      - Ref: ScrprSubnetA
+      - Ref: ScrprSubnetB
 
 functions:
   helloworld: ${file(functions/HelloWorld/function-hello-world.yml)}
@@ -30,6 +36,11 @@ functions:
 
 resources:
   Resources:
+    ScrprVPC: ${file(resources/vpc.yml)}
+    SecurityGroup: ${file(resources/security-group.yml)}
+    ScrprSubnetA: ${file(resources/subnet-a.yml)}
+    ScrprSubnetB: ${file(resources/subnet-b.yml)}
+    DBSubnetGroup: ${file(resources/database-subnet-group.yml)}
     CloudFrontDistribution: ${file(resources/cloudfront.yml)}
     Authorizer: ${file(resources/cognito-authorizer.yml)}
     UserPool: ${file(resources/cognito-userpool.yml)}

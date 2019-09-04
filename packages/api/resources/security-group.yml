@@ -1,0 +1,15 @@
+DependsOn: ScrprVPC
+Type: AWS::EC2::SecurityGroup
+Properties:
+  GroupDescription: Security Group for scrpr functions
+  VpcId:
+    Ref: ScrprVPC
+  SecurityGroupIngress:
+    - CidrIp: 10.0.0.0/24
+      IpProtocol: tcp
+      FromPort: 5432
+      ToPort: 5432
+  Tags:
+    -
+      Key: "Name"
+      Value: "ScrprSecurityGroup"

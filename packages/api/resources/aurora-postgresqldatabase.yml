@@ -1,12 +1,17 @@
+DependsOn: SecurityGroup
 Type: AWS::RDS::DBCluster
 Properties:
   DatabaseName: scrpr_database
   DBClusterIdentifier: scrpr-cluster
   Engine: aurora-postgresql
   EngineMode: serverless
-  MasterUsername:
+  MasterUsername: scrpr_user
   MasterUserPassword:
   ScalingConfiguration:
     AutoPause: true
     MaxCapacity: 2
     MinCapacity: 2
+  VpcSecurityGroupIds:
+    - Ref: SecurityGroup
+  DBSubnetGroupName:
+    Ref: DBSubnetGroup
