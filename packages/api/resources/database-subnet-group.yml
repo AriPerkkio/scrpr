@@ -2,8 +2,8 @@ Type: AWS::RDS::DBSubnetGroup
 Properties:
   DBSubnetGroupDescription: "RDS Subnet Group"
   SubnetIds:
-    - Ref: ScrprSubnetA
-    - Ref: ScrprSubnetB
+    - Ref: SubnetA
+    - Ref: SubnetB
   Tags:
     -
       Key: "Name"

@@ -7,7 +7,7 @@ plugins:
 
 custom:
   output:
-    file: cf-output.json
+    handler: scripts/output.handler
   serverless-offline:
     port: 5000
   webpack:
@@ -27,8 +27,9 @@ provider:
     securityGroupIds:
       - Ref: SecurityGroup
     subnetIds:
-      - Ref: ScrprSubnetA
-      - Ref: ScrprSubnetB
+      - Ref: SubnetA
+      - Ref: SubnetB
+  environment: ${file(resources/secrets.yml)}
 
 functions:
   helloworld: ${file(functions/HelloWorld/function-hello-world.yml)}
@@ -36,10 +37,10 @@ functions:
 
 resources:
   Resources:
-    ScrprVPC: ${file(resources/vpc.yml)}
+    VPC: ${file(resources/vpc.yml)}
     SecurityGroup: ${file(resources/security-group.yml)}
-    ScrprSubnetA: ${file(resources/subnet-a.yml)}
-    ScrprSubnetB: ${file(resources/subnet-b.yml)}
+    SubnetA: ${file(resources/subnet-a.yml)}
+    SubnetB: ${file(resources/subnet-b.yml)}
     DBSubnetGroup: ${file(resources/database-subnet-group.yml)}
     CloudFrontDistribution: ${file(resources/cloudfront.yml)}
     Authorizer: ${file(resources/cognito-authorizer.yml)}
@@ -51,9 +52,6 @@ resources:
     CloudFrontDomainName:
       Value:
         Fn::GetAtt: ['CloudFrontDistribution', 'DomainName']
-    CloudFrontDistrubutionId:
-      Value:
-        Ref: CloudFrontDistribution
     UserPoolClient:
       Value:
         Ref: UserPoolClient

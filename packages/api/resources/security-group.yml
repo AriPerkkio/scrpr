@@ -1,9 +1,9 @@
-DependsOn: ScrprVPC
+DependsOn: VPC
 Type: AWS::EC2::SecurityGroup
 Properties:
   GroupDescription: Security Group for scrpr functions
   VpcId:
-    Ref: ScrprVPC
+    Ref: VPC
   SecurityGroupIngress:
     - CidrIp: 10.0.0.0/24
       IpProtocol: tcp

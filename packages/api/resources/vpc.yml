@@ -1,4 +1,3 @@
-# Reference https://github.com/serverless/examples/tree/master/aws-node-graphql-and-rds/resource
 Type: AWS::EC2::VPC
 Properties:
   CidrBlock: 10.0.0.0/24

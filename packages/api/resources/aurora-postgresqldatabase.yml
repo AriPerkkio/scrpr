@@ -6,7 +6,7 @@ Properties:
   Engine: aurora-postgresql
   EngineMode: serverless
   MasterUsername: scrpr_user
-  MasterUserPassword:
+  MasterUserPassword: ${file(resources/secrets.yml):DB_PASSWORD}
   ScalingConfiguration:
     AutoPause: true
     MaxCapacity: 2

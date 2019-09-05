@@ -4,11 +4,10 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "build": "webpack --mode=production",
         "deploy": "serverless deploy -v",
         "deploy:fn": "serverless deploy function --function",
         "undeploy": "serverless remove",
-        "validate": "serverless deploy --noDeploy -v",
+        "validate": "nodemon -e yml --exec \"serverless deploy --noDeploy -v\"",
         "log:fn": "serverless logs -t -f"
     },
     "author": "",
@@ -20,6 +19,7 @@
     },
     "devDependencies": {
         "@types/aws-lambda": "^8.10.31",
+        "nodemon": "^1.19.2",
         "serverless": "^1.48.2",
         "serverless-offline": "^5.8.0",
         "serverless-plugin-typescript": "1.1.7",

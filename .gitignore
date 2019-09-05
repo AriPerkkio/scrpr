@@ -61,7 +61,8 @@ typings/
 .next
 
 # api
-cf-output.json
+cf-hidden-values.json
+cf-public-values.json
 .serverless/
 
 # editors

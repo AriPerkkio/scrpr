@@ -1,8 +1,8 @@
-DependsOn: ScrprVPC
+DependsOn: VPC
 Type: AWS::EC2::Subnet
 Properties:
   VpcId:
-    Ref: ScrprVPC
+    Ref: VPC
   AvailabilityZone: ${self:provider.region}a
   CidrBlock: 10.0.0.0/26
   Tags:

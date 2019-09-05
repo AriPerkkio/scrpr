@@ -1,6 +1,6 @@
 /* eslint-disable */
 const proxy = require('http-proxy-middleware');
-const config = require('scrpr-api/cf-output.json');
+const config = require('scrpr-api/cf-public-values.json');
 
 module.exports = app => {
     console.log(`Setting up proxy to http://${config.CloudFrontDomainName}`);

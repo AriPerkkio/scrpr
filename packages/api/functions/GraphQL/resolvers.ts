@@ -3,22 +3,18 @@ import knex from 'knex';
 const pg = knex({
     client: 'pg',
     connection: {
-        host: '',
-        user: 'scrpr_user',
-        password: '',
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
         database: 'scrpr_database',
     },
 });
 
 export const hello = async (): Promise<string> => {
     try {
-        console.log('Starting query');
-
         const result = await pg('hello_world')
             .select('text')
             .first();
-
-        console.log('Success', result.text);
 
         return result.text;
     } catch (e) {
