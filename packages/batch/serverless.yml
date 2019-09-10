@@ -1,0 +1,8 @@
+service: scrpr-batch
+
+provider:
+  name: aws
+
+resources:
+  Resources:
+    ECRRepository: ${file(resources/ecr-repository.yml)}

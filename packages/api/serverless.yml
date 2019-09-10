@@ -8,6 +8,7 @@ plugins:
 custom:
   output:
     handler: scripts/output.handler
+    file: cf-hidden-values.yml
   serverless-offline:
     port: 5000
   webpack:
@@ -58,3 +59,9 @@ resources:
     UserPool:
       Value:
         Ref: UserPool
+    VPCId:
+      Value:
+        Ref: VPC
+    SecurityGroupId:
+      Value:
+        Ref: SecurityGroup

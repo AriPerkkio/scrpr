@@ -11,20 +11,12 @@ const writeJsons = (data, name) => {
 };
 
 const handler = data => {
-    const {
-        UserPool,
-        UserPoolClient,
-        CloudFrontDomainName,
-
-        // Values for API. Hidden from end users.
-        ...privateValues,
-    } = data;
+    const { UserPool, UserPoolClient, CloudFrontDomainName } = data;
 
     // Values for UI. End users can see these in plaintext
     const publicValues = { UserPool, UserPoolClient, CloudFrontDomainName };
 
     writeJsons(publicValues, 'cf-public-values.json');
-    writeJsons(privateValues, 'cf-hidden-values.json');
 };
 
 module.exports = { handler };

@@ -1,0 +1,3 @@
+Type: AWS::ECR::Repository
+Properties:
+  RepositoryName: scrpr-repository

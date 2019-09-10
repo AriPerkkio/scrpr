@@ -61,7 +61,7 @@ typings/
 .next
 
 # api
-cf-hidden-values.json
+cf-hidden-values.yml
 cf-public-values.json
 .serverless/
 
