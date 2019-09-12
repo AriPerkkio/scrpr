@@ -1,19 +1,20 @@
 {
-  "name": "scrpr-batch",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "deploy": "serverless deploy -v",
-    "undeploy": "serverless remove"
-  },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "serverless": "^1.51.0",
-    "serverless-webpack": "^5.3.1",
-    "ts-loader": "^6.0.4",
-    "typescript": "^3.6.2",
-    "webpack-cli": "^3.3.8"
-  }
+    "name": "scrpr-batch",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "node src/batch-job.js",
+        "deploy": "serverless deploy -v",
+        "undeploy": "serverless remove"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "serverless": "^1.51.0",
+        "serverless-webpack": "^5.3.1",
+        "ts-loader": "^6.0.4",
+        "typescript": "^3.6.2",
+        "webpack-cli": "^3.3.8"
+    }
 }
