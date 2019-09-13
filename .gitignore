@@ -65,6 +65,9 @@ cf-hidden-values.yml
 cf-public-values.json
 .serverless/
 
+# batch
+cf-values.yml
+
 # editors
 .vscode
 
