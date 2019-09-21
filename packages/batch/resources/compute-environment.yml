@@ -1,0 +1,20 @@
+Type: AWS::Batch::ComputeEnvironment
+Properties:
+  ComputeEnvironmentName: scrpr-compute-environment
+  Type: MANAGED
+  ServiceRole:
+    Ref: BatchServiceRole
+  ComputeResources:
+    Type: EC2
+    DesiredvCpus: 1
+    MaxvCpus: 1
+    MinvCpus: 1
+    Subnets:
+      - ${file(../cf-hidden-values.yml):SubnetAId}
+      - ${file(../cf-hidden-values.yml):SubnetBId}
+    SecurityGroupIds:
+      - ${file(../cf-hidden-values.yml):SecurityGroupId}
+    InstanceTypes:
+      - a1.medium
+    InstanceRole:
+      Ref: BatchInstanceProfile

@@ -1,0 +1,15 @@
+Type: AWS::IAM::Role
+Properties:
+  RoleName: scrpr-batch-service-role
+  AssumeRolePolicyDocument:
+    Version: "2012-10-17"
+    Statement:
+      -
+        Effect: 'Allow'
+        Principal:
+          Service:
+            - 'batch.amazonaws.com'
+        Action:
+          - 'sts:AssumeRole'
+  ManagedPolicyArns:
+    - 'arn:aws:iam::aws:policy/service-role/AWSBatchServiceRole'

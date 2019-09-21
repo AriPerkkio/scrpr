@@ -1,0 +1,9 @@
+DependsOn: ComputeEnvironment
+Type: "AWS::Batch::JobQueue"
+Properties:
+  JobQueueName: scrpr-job-queue
+  ComputeEnvironmentOrder:
+    - ComputeEnvironment:
+        Ref: ComputeEnvironment
+      Order: 1
+  Priority: 1

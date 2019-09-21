@@ -6,7 +6,8 @@
     "scripts": {
         "start": "node src/batch-job.js",
         "deploy": "serverless deploy -v",
-        "undeploy": "serverless remove"
+        "undeploy": "serverless remove",
+        "validate": "serverless deploy --noDeploy -v"
     },
     "author": "",
     "license": "ISC",

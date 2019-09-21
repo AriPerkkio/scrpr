@@ -12,7 +12,13 @@ provider:
 
 resources:
   Resources:
+    BatchInstanceProfile: ${file(resources/batch-instance-profile.yml)}
+    BatchInstanceRole: ${file(resources/batch-instance-role.yml)}
+    BatchServiceRole: ${file(resources/batch-service-role.yml)}
+    ComputeEnvironment: ${file(resources/compute-environment.yml)}
     ECRRepository: ${file(resources/ecr-repository.yml)}
+    JobDefinition: ${file(resources/job-definition.yml)}
+    JobQueue: ${file(resources/job-queue.yml)}
 
   Outputs:
     Region:

@@ -20,7 +20,9 @@ docker build -t scrpr-batch .
 if [[ $1 == "deploy" ]]; then
     echo 'Preparing to push image to ECR'
     docker tag scrpr-batch ${ECR_URI}
-    aws ecr get-login --region $REGION --no-include-email
+
+    # 'aws ecr get-login' returns 'docker login' command. Wrap it in eval to run login
+    eval $(aws ecr get-login --region $REGION --no-include-email)
     docker push ${ECR_URI}
     echo 'Image pushed to ECR'
 fi
