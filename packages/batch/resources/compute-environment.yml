@@ -7,14 +7,13 @@ Properties:
   ComputeResources:
     Type: EC2
     DesiredvCpus: 1
-    MaxvCpus: 1
+    MaxvCpus: 10
     MinvCpus: 1
     Subnets:
-      - ${file(../cf-hidden-values.yml):SubnetAId}
-      - ${file(../cf-hidden-values.yml):SubnetBId}
+      - ${file(../cf-hidden-values.yml):SubnetPublicId}
     SecurityGroupIds:
       - ${file(../cf-hidden-values.yml):SecurityGroupId}
     InstanceTypes:
-      - a1.medium
+      - m3.medium
     InstanceRole:
       Ref: BatchInstanceProfile

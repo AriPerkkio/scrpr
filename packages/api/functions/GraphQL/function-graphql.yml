@@ -1,4 +1,5 @@
 handler: functions/GraphQL/handler.handler
+timeout: 30
 events:
   - http:
       path: api/graphql

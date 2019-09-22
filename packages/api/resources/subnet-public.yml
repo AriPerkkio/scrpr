@@ -1,0 +1,12 @@
+DependsOn: VPC
+Type: AWS::EC2::Subnet
+Properties:
+  VpcId:
+    Ref: VPC
+  AvailabilityZone: ${self:provider.region}c
+  CidrBlock: 10.0.0.128/28
+  MapPublicIpOnLaunch: true
+  Tags:
+    -
+      Key: "Name"
+      Value: "ScrprSubnetPublic"

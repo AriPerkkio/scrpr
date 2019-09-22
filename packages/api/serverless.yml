@@ -30,6 +30,7 @@ provider:
     subnetIds:
       - Ref: SubnetA
       - Ref: SubnetB
+      - Ref: SubnetPublic
   environment: ${file(resources/secrets.yml)}
 
 functions:
@@ -39,9 +40,14 @@ functions:
 resources:
   Resources:
     VPC: ${file(resources/vpc.yml)}
+    InternetGateway: ${file(resources/internet-gateway.yml)}
+    VPCGatewayAttachment: ${file(resources/vpc-gateway-attachment.yml)}
+    RouteTable: ${file(resources/route-table.yml)}
+    Route: ${file(resources/route.yml)}
     SecurityGroup: ${file(resources/security-group.yml)}
     SubnetA: ${file(resources/subnet-a.yml)}
     SubnetB: ${file(resources/subnet-b.yml)}
+    SubnetPublic: ${file(resources/subnet-public.yml)}
     DBSubnetGroup: ${file(resources/database-subnet-group.yml)}
     CloudFrontDistribution: ${file(resources/cloudfront.yml)}
     Authorizer: ${file(resources/cognito-authorizer.yml)}
@@ -71,3 +77,6 @@ resources:
     SubnetBId:
       Value:
         Ref: SubnetB
+    SubnetPublicId:
+      Value:
+        Ref: SubnetPublic
