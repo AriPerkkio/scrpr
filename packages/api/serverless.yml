@@ -37,6 +37,7 @@ functions:
   helloworld: ${file(functions/HelloWorld/function-hello-world.yml)}
   graphql: ${file(functions/GraphQL/function-graphql.yml)}
 
+# TODO Split into api, domain, storage
 resources:
   Resources:
     VPC: ${file(resources/vpc.yml)}
@@ -44,6 +45,7 @@ resources:
     VPCGatewayAttachment: ${file(resources/vpc-gateway-attachment.yml)}
     RouteTable: ${file(resources/route-table.yml)}
     Route: ${file(resources/route.yml)}
+    SubnetRouteTableAssociation: ${file(resources/subnet-route-association.yml)}
     SecurityGroup: ${file(resources/security-group.yml)}
     SubnetA: ${file(resources/subnet-a.yml)}
     SubnetB: ${file(resources/subnet-b.yml)}

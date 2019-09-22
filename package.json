@@ -5,7 +5,9 @@
   "workspaces": [
     "packages/api",
     "packages/batch",
-    "packages/client"
+    "packages/client",
+    "packages/domain",
+    "packages/storage"
   ],
   "private": true,
   "scripts": {
