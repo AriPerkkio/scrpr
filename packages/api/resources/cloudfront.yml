@@ -45,7 +45,7 @@ Properties:
         OriginPath: /dev
         CustomOriginConfig:
           OriginProtocolPolicy: https-only
-      - DomainName: scrpr-client.s3.amazonaws.com
+      - DomainName: scrpr-client.s3.amazonaws.com # TODO Ref from client package
         Id: myS3Origin
         S3OriginConfig:
           OriginAccessIdentity: ''

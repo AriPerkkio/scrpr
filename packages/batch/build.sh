@@ -1,9 +1,9 @@
 #!/bin/bash
 
-[[ "$(<cf-values.yml)" =~ (ECRURI: ([^[:space:]]*)) ]]
+[[ "$(<cf-batch.yml)" =~ (ECRURI: ([^[:space:]]*)) ]]
 ECR_URI=${BASH_REMATCH[2]}
 
-[[ "$(<cf-values.yml)" =~ (Region: ([^[:space:]]*)) ]]
+[[ "$(<cf-batch.yml)" =~ (Region: ([^[:space:]]*)) ]]
 REGION=${BASH_REMATCH[2]}
 
 EXISTING_IMAGE_ID=$(docker images -q scrpr-batch)

@@ -5,7 +5,7 @@ plugins:
 
 custom:
   output:
-    file: cf-values.yml
+    file: cf-batch.yml
 
 provider:
   name: aws

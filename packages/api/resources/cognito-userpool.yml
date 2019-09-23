@@ -1,5 +1,6 @@
 Type: AWS::Cognito::UserPool
 Properties:
+  UserPoolName: scrpr-user-pool
   AutoVerifiedAttributes:
     - email
   Policies:
@@ -13,4 +14,3 @@ Properties:
       Mutable: false
       Name: email
       Required: true
-  UserPoolName: scrpr-user-pool

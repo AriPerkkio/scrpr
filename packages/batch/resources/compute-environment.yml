@@ -10,9 +10,9 @@ Properties:
     MaxvCpus: 10
     MinvCpus: 1
     Subnets:
-      - ${file(../cf-hidden-values.yml):SubnetPublicId}
+      - ${file(../cf-domain.yml):SubnetPublicId}
     SecurityGroupIds:
-      - ${file(../cf-hidden-values.yml):SecurityGroupId}
+      - ${file(../cf-domain.yml):SecurityGroupId}
     InstanceTypes:
       - m3.medium
     InstanceRole:

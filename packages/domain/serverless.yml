@@ -1,0 +1,41 @@
+service: scrpr-domain
+
+plugins:
+  - serverless-stack-output
+
+custom:
+  output:
+    file: ../cf-domain.yml
+
+provider:
+  name: aws
+
+resources:
+  Resources:
+    InternetGateway: ${file(resources/internet-gateway.yml)}
+    RouteTable: ${file(resources/route-table.yml)}
+    Route: ${file(resources/route.yml)}
+    SecurityGroup: ${file(resources/security-group.yml)}
+    SubnetA: ${file(resources/subnet-a.yml)}
+    SubnetB: ${file(resources/subnet-b.yml)}
+    SubnetPublic: ${file(resources/subnet-public.yml)}
+    SubnetRouteTableAssociation: ${file(resources/subnet-route-table-association.yml)}
+    VPC: ${file(resources/vpc.yml)}
+    VPCGatewayAttachment: ${file(resources/vpc-gateway-attachment.yml)}
+
+  Outputs:
+    VPCId:
+      Value:
+        Ref: VPC
+    SecurityGroupId:
+      Value:
+        Ref: SecurityGroup
+    SubnetAId:
+      Value:
+        Ref: SubnetA
+    SubnetBId:
+      Value:
+        Ref: SubnetB
+    SubnetPublicId:
+      Value:
+        Ref: SubnetPublic

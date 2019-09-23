@@ -60,13 +60,12 @@ typings/
 # next.js build output
 .next
 
-# api
-cf-hidden-values.yml
-cf-public-values.json
+# stack auto-generated
 .serverless/
-
-# batch
-cf-values.yml
+cf-api.json
+cf-batch.yml
+cf-domain.yml
+cf-storage.yml
 
 # editors
 .vscode

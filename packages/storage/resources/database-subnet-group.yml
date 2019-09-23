@@ -2,8 +2,8 @@ Type: AWS::RDS::DBSubnetGroup
 Properties:
   DBSubnetGroupDescription: "RDS Subnet Group"
   SubnetIds:
-    - Ref: SubnetA
-    - Ref: SubnetB
+    - ${file(../cf-domain.yml):SubnetAId}
+    - ${file(../cf-domain.yml):SubnetBId}
   Tags:
     -
       Key: "Name"

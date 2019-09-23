@@ -1,0 +1,15 @@
+service: scrpr-client
+
+plugins:
+  - serverless-stack-output
+
+custom:
+  output:
+    file: ../cf-client.yml
+
+provider:
+  name: aws
+
+resources:
+  Resources:
+    S3Bucket: ...

@@ -1,0 +1,21 @@
+service: scrpr-storage
+
+plugins:
+  - serverless-stack-output
+
+custom:
+  output:
+    file: ../cf-storage.yml
+
+provider:
+  name: aws
+
+resources:
+  Resources:
+    Database: ${file(resources/aurora-postgresqldatabase.yml)}
+    DBSubnetGroup: ${file(resources/database-subnet-group.yml)}
+
+  Outputs:
+    DatabaseHost:
+      Value:
+        Fn::GetAtt: ['Database', 'Endpoint.Address']

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-[[ "$(<cf-values.yml)" =~ (Region: ([^[:space:]]*)) ]]
+[[ "$(<cf-batch.yml)" =~ (Region: ([^[:space:]]*)) ]]
 REGION=${BASH_REMATCH[2]}
 
 echo Deleting image

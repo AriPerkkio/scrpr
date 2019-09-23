@@ -1,6 +1,14 @@
 {
-  "name": "scrpr-domain",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT"
+    "name": "scrpr-domain",
+    "version": "1.0.0",
+    "license": "MIT",
+    "scripts": {
+        "deploy": "serverless deploy -v",
+        "undeploy": "serverless remove",
+        "validate": "nodemon -e yml --exec \"serverless deploy --noDeploy -v\""
+    },
+    "devDependencies": {
+        "serverless": "^1.52.2",
+        "serverless-stack-output": "^0.2.3"
+    }
 }
