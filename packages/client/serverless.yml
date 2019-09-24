@@ -12,4 +12,14 @@ provider:
 
 resources:
   Resources:
-    S3Bucket: ...
+    Bucket: ${file(resources/bucket.yml)}
+    BucketPolicy: ${file(resources/bucket-policy.yml)}
+    OriginAccessIdentity: ${file(resources/origin-access-identity.yml)}
+
+  Outputs:
+    OriginAccessIdentity:
+      Value:
+        Ref: OriginAccessIdentity
+    BucketName:
+      Value:
+        Ref: Bucket

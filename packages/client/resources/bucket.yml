@@ -1,0 +1,6 @@
+Type: AWS::S3::Bucket
+Properties:
+  BucketName: scrpr-client-bucket
+  WebsiteConfiguration:
+    IndexDocument:
+      index.html

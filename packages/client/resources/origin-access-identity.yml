@@ -1,0 +1,4 @@
+Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+Properties:
+  CloudFrontOriginAccessIdentityConfig:
+    Comment: 'Origin access identity for cloudfront to access scrpr-client-bucket'

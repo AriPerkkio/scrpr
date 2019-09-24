@@ -7,8 +7,8 @@ Properties:
   ComputeResources:
     Type: EC2
     DesiredvCpus: 1
-    MaxvCpus: 10
-    MinvCpus: 1
+    MaxvCpus: 1
+    MinvCpus: 0
     Subnets:
       - ${file(../cf-domain.yml):SubnetPublicId}
     SecurityGroupIds:

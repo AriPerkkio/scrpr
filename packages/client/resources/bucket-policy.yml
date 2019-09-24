@@ -1,0 +1,15 @@
+Type: AWS::S3::BucketPolicy
+Properties:
+  Bucket:
+    Ref: Bucket
+  PolicyDocument:
+    Statement:
+      -
+        Action:
+          - 's3:GetObject'
+        Effect: 'Allow'
+        Resource:
+          Fn::Join: ['', [ 'arn:aws:s3:::', { 'Ref': Bucket }, '/*'] ]
+        Principal:
+          CanonicalUser:
+            Fn::GetAtt: [OriginAccessIdentity, S3CanonicalUserId]
