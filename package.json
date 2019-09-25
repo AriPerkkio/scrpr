@@ -11,7 +11,8 @@
     ],
     "private": true,
     "scripts": {
-        "deploy": "node deploy.js",
+        "deploy": "./scripts/deploy.sh",
+        "undeploy": "./scripts/undeploy.sh",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {

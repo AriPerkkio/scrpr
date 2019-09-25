@@ -6,7 +6,7 @@
         "start": "react-scripts start",
         "build": "react-scripts build",
         "deploy": "serverless deploy -v",
-        "deploy:ui": "deploy-aws-s3-cloudfront --bucket scrpr-client-bucket --source=./build",
+        "deploy:ui": "deploy-aws-s3-cloudfront --bucket scrpr-client-bucket --source=./build --non-interactive",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "storybook": "start-storybook -p 9001 -c .storybook",

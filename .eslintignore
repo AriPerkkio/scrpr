@@ -1,3 +1,3 @@
 **/api/dist/*.js
 **/api/webpack.config.js
-**/api/scripts/*.js
+**/scripts/*.js
