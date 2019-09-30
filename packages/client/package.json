@@ -6,11 +6,11 @@
         "start": "react-scripts start",
         "build": "react-scripts build",
         "deploy": "serverless deploy -v",
-        "deploy:ui": "deploy-aws-s3-cloudfront --bucket scrpr-client-bucket --source=./build --non-interactive",
+        "deploy:ui": "yarn build && deploy-aws-s3-cloudfront --bucket scrpr-client-bucket --source=./build --non-interactive",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "storybook": "start-storybook -p 9001 -c .storybook",
-        "undeploy": "serverless remove"
+        "undeploy": "./scripts/undeploy.sh && serverless remove"
     },
     "dependencies": {
         "amazon-cognito-identity-js": "^3.0.14",

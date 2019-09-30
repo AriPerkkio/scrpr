@@ -19,9 +19,10 @@ if [[ $EXISTING_IMAGE_ID != "" ]]; then
   echo -e "${GREEN}- Delete complete${RESET}"
 fi
 
+yarn build
 docker build -t scrpr-batch .
 
-if [[ $1 == "deploy" ]]; then
+if [[ $1 == "--deploy" ]]; then
     echo -e "${YELLOW}- Preparing to push image to ECR${RESET}"
     docker tag scrpr-batch ${ECR_URI}
 

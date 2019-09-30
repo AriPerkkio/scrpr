@@ -1,0 +1,17 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+        "preserveConstEnums": true,
+        "strictNullChecks": true,
+        "sourceMap": true,
+        "allowJs": true,
+        "module": "commonjs",
+        "target": "es6",
+        "outDir": "./dist",
+        "moduleResolution": "node",
+        "lib": [
+            "es2015"
+        ],
+        "rootDir": "./src"
+    }
+}

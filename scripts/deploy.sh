@@ -28,8 +28,4 @@ echo -e "${YELLOW}- Deploying batch${RESET}"
 ( cd packages/batch ; yarn deploy )
 echo -e "${GREEN}- Batch deployment complete${RESET}"
 
-echo -e "${YELLOW}- Deploying container image${RESET}"
-( cd packages/batch ; ./build.sh )
-echo -e "${GREEN}- Container image deployment complete${RESET}"
-
 echo -e "${GREEN}- Stack deployment complete${RESET}"

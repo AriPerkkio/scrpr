@@ -5,7 +5,6 @@ GREEN='\e[92m';
 RESET='\e[0m';
 
 echo -e "${YELLOW}- Undeploying batch${RESET}"
-( cd packages/batch ; ./undeploy.sh )
 ( cd packages/batch ; yarn undeploy )
 echo -e "${GREEN}- Batch undeploy complete${RESET}"
 
@@ -14,7 +13,6 @@ echo -e "${YELLOW}- Undeploying api${RESET}"
 echo -e "${GREEN}- Api undeploy complete${RESET}"
 
 echo -e "${YELLOW}- Undeploying client${RESET}"
-( cd packages/client ; ./undeploy.sh )
 ( cd packages/client ; yarn undeploy )
 echo -e "${GREEN}- Client undeploy complete${RESET}"
 

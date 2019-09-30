@@ -73,4 +73,5 @@ cf-storage.yml
 
 # generated
 build
+dist
 .webpack

@@ -4,19 +4,20 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "node src/batch-job.js",
-        "deploy": "serverless deploy -v",
-        "undeploy": "serverless remove",
+        "build": "tsc",
+        "start": "node dist/batch-job.js",
+        "deploy": "serverless deploy -v && ./scripts/build.sh --deploy",
+        "undeploy": "./scripts/undeploy.sh && serverless remove",
         "validate": "serverless deploy --noDeploy -v"
     },
-    "author": "",
     "license": "ISC",
+    "dependencies": {
+        "puppeteer": "^1.20.0"
+    },
     "devDependencies": {
+        "@types/puppeteer": "^1.20.0",
         "serverless": "^1.51.0",
         "serverless-stack-output": "^0.2.3",
-        "serverless-webpack": "^5.3.1",
-        "ts-loader": "^6.0.4",
-        "typescript": "^3.6.2",
-        "webpack-cli": "^3.3.8"
+        "typescript": "^3.6.2"
     }
 }
