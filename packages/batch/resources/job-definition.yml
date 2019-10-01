@@ -5,5 +5,5 @@ Properties:
   ContainerProperties:
     Image:
       Fn::Join: ["", [ { "Ref": "AWS::AccountId" }, '.dkr.ecr.', { Ref: "AWS::Region" }, ".amazonaws.com/", { Ref: ECRRepository }, ":latest" ]]
-    Memory: 128
+    Memory: 512
     Vcpus: 1
