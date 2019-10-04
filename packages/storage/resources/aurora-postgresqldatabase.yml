@@ -4,7 +4,7 @@ Properties:
   DBClusterIdentifier: scrpr-cluster
   Engine: aurora-postgresql
   EngineMode: serverless
-  MasterUsername: scrpr_user
+  MasterUsername: ${file(../secrets.yml):DB_USER}
   MasterUserPassword: ${file(../secrets.yml):DB_PASSWORD}
   ScalingConfiguration:
     AutoPause: true

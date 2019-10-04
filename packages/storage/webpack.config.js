@@ -2,7 +2,7 @@ const slsw = require('serverless-webpack');
 
 module.exports = {
     mode: 'development',
-    entry: slsw.lib.entries,
+    entry: slsw.lib.entries, // './functions/InitializeDatabase/handler.ts'
     target: 'node',
     optimization: {
         minimize: false,
@@ -17,7 +17,6 @@ module.exports = {
         ],
     },
     externals: {
-        knex: 'commonjs knex', // webpack fails to bundle knex
         ws: 'ws',
     },
     resolve: {

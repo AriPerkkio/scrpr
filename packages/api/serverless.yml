@@ -1,4 +1,4 @@
-service: scrpr-service
+service: scrpr-api
 
 plugins:
   - serverless-stack-output

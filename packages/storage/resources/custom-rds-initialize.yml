@@ -1,0 +1,5 @@
+DependsOn: InitializeDatabaseLambdaFunction
+Type: AWS::CloudFormation::CustomResource
+Properties:
+  ServiceToken:
+    Fn::GetAtt: [InitializeDatabaseLambdaFunction, Arn]

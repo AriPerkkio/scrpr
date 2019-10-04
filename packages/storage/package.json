@@ -3,12 +3,21 @@
     "version": "1.0.0",
     "license": "MIT",
     "scripts": {
+        "build": "webpack",
         "deploy": "serverless deploy -v",
         "undeploy": "serverless remove",
+        "log": "serverless logs -t -f InitializeDatabase",
         "validate": "nodemon -e yml --exec \"serverless deploy --noDeploy -v\""
+    },
+    "dependencies": {
+        "cfn-lambda": "^4.0.0"
     },
     "devDependencies": {
         "serverless": "^1.52.2",
-        "serverless-stack-output": "^0.2.3"
+        "serverless-stack-output": "^0.2.3",
+        "serverless-webpack": "^5.3.1",
+        "ts-loader": "^6.2.0",
+        "typescript": "^3.6.3",
+        "webpack-cli": "^3.3.9"
     }
 }

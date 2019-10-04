@@ -2,18 +2,34 @@ service: scrpr-storage
 
 plugins:
   - serverless-stack-output
+  - serverless-webpack
 
 custom:
   output:
     file: ../cf-storage.yml
+  webpack:
+    packager: 'yarn'
 
 provider:
   name: aws
+
+functions:
+  InitializeDatabase:
+    name: InitializeDatabase
+    handler: functions/InitializeDatabase/handler.handler
+    runtime: nodejs8.10
+    versionFunctions: false
+    timeout: 30
+    environment:
+      DB_USER: ${file(../secrets.yml):DB_USER}
+      DB_PASSWORD: ${file(../secrets.yml):DB_PASSWORD}
+      DB_HOST: ${file(../cf-storage.yml):DatabaseHost}
 
 resources:
   Resources:
     Database: ${file(resources/aurora-postgresqldatabase.yml)}
     DBSubnetGroup: ${file(resources/database-subnet-group.yml)}
+    RDSInitialize: ${file(resources/custom-rds-initialize.yml)}
 
   Outputs:
     DatabaseHost:
