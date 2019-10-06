@@ -1,20 +1,25 @@
 import CfnLambda, { AsyncHandler } from 'cfn-lambda';
+import knex from 'knex';
+import { createConfigurations } from './create-tables';
 
-const PhysicalResourceId = 'DatabaseInitialization';
+const RESPONSE = { PhysicalResourceId: 'DatabaseInitialization' };
+const pg = knex({
+    client: 'pg',
+    connection: {
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database: 'scrpr_database',
+    },
+});
 
 const Create: AsyncHandler = async () => {
-    console.log('TODO populate database with tables');
+    await createConfigurations(pg.schema);
 
-    return {
-        PhysicalResourceId,
-    };
+    return RESPONSE;
 };
 
-const asyncNoop: AsyncHandler = async () => {
-    return {
-        PhysicalResourceId,
-    };
-};
+const asyncNoop: AsyncHandler = async () => RESPONSE;
 
 exports.handler = CfnLambda({
     AsyncCreate: Create,

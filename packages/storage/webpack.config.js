@@ -17,6 +17,7 @@ module.exports = {
         ],
     },
     externals: {
+        knex: 'commonjs knex', // webpack fails to bundle knex
         ws: 'ws',
     },
     resolve: {

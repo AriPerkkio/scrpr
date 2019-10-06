@@ -9,6 +9,10 @@ custom:
     file: ../cf-storage.yml
   webpack:
     packager: 'yarn'
+    includeModules:
+      forceInclude:
+        - knex # webpack fails to bundle knex
+        - pg
 
 provider:
   name: aws
@@ -20,6 +24,11 @@ functions:
     runtime: nodejs8.10
     versionFunctions: false
     timeout: 30
+    vpc: # Automatically adds AWSLambdaVPCAccessExecutionRole
+      securityGroupIds:
+        - ${file(../cf-domain.yml):SecurityGroupId}
+      subnetIds:
+        - ${file(../cf-domain.yml):SubnetAId}
     environment:
       DB_USER: ${file(../secrets.yml):DB_USER}
       DB_PASSWORD: ${file(../secrets.yml):DB_PASSWORD}
