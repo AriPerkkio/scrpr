@@ -1,6 +1,8 @@
 import CfnLambda, { AsyncHandler } from 'cfn-lambda';
 import knex from 'knex';
+
 import { createConfigurations } from './create-tables';
+import { insertConfigurations } from './seed-data';
 
 const RESPONSE = { PhysicalResourceId: 'DatabaseInitialization' };
 const pg = knex({
@@ -15,13 +17,14 @@ const pg = knex({
 
 const Create: AsyncHandler = async () => {
     await createConfigurations(pg.schema);
+    await insertConfigurations(pg);
 
     return RESPONSE;
 };
 
 const asyncNoop: AsyncHandler = async () => RESPONSE;
 
-exports.handler = CfnLambda({
+export const handler = CfnLambda({
     AsyncCreate: Create,
     AsyncUpdate: asyncNoop,
     AsyncDelete: asyncNoop,

@@ -1,8 +1,8 @@
 import { SchemaBuilder } from 'knex';
 
-const CONFIGURATIONS = 'configurations';
-const ID = 'id';
-const NAME = 'name';
+export const CONFIGURATIONS = 'configurations';
+export const ID = 'id';
+export const NAME = 'name';
 
 export const createConfigurations = async (
     schemaBuilder: SchemaBuilder

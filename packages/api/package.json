@@ -22,7 +22,6 @@
         "nodemon": "^1.19.2",
         "serverless": "^1.48.2",
         "serverless-offline": "^5.8.0",
-        "serverless-plugin-typescript": "1.1.7",
         "serverless-stack-output": "^0.2.3",
         "serverless-webpack": "^5.3.1",
         "start-server-and-test": "^1.9.1",

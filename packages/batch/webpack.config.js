@@ -1,8 +1,11 @@
-const slsw = require('serverless-webpack');
+const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
     mode: 'development',
-    entry: slsw.lib.entries || './functions/InitializeDatabase/handler.ts',
+    entry: './src/batch-job.ts',
+    output: {
+        filename: 'batch-job.js',
+    },
     target: 'node',
     optimization: {
         minimize: false,
@@ -14,12 +17,14 @@ module.exports = {
                 use: 'ts-loader',
                 exclude: /node_modules/,
             },
+            {
+                test: /\.yml$/,
+                loader: 'yml-loader',
+                exclude: /node_modules/,
+            },
         ],
     },
-    externals: {
-        knex: 'commonjs knex', // webpack fails to bundle knex
-        ws: 'ws',
-    },
+    externals: [nodeExternals()],
     resolve: {
         extensions: ['.ts', '.mjs', '.js'],
     },

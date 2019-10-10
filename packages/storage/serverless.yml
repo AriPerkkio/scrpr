@@ -9,6 +9,7 @@ custom:
     file: ../cf-storage.yml
   webpack:
     packager: 'yarn'
+    excludeFiles: __tests__/**
     includeModules:
       forceInclude:
         - knex # webpack fails to bundle knex
