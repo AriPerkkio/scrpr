@@ -1,18 +1,14 @@
 import puppeteer from 'puppeteer';
 import knex from 'knex';
 
-// Move to webpack conf. use process.env. Check for test env.
-import secrets from '../../secrets.yml';
-import cfStorage from '../../cf-storage.yml';
-
 (async () => {
     try {
         const pg = knex({
             client: 'pg',
             connection: {
-                host: cfStorage.DatabaseHost,
-                user: secrets.DB_USER,
-                password: secrets.DB_PASSWORD,
+                host: __DB_HOST__,
+                user: __DB_USER__,
+                password: __DB_PASSWORD__,
                 database: 'scrpr_database',
                 // TODO set higher timeout
             },

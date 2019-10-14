@@ -1,25 +1,29 @@
 # scrpr
-- Typescript
-- Serverless
-- GraphQL
-- Postgresql
-- Puppeteer
-- Scraping job, trigger?
-- Cognito
-- React
-- Storybook
-- Cypress.io
-- Circle CI
-- Websockets
+```
+packages
+|  ├── #
+├── batch
+|  ├── #
+├── client
+|  ├── #
+├── domain
+|  ├── #
+└── storage
+   ├── # AWS RDS postgresql
+```
 
-## Services
-- Configurations
-    - Target
-    - Regex
-    - Interval
-- Results
-
-## Batch
-- AWS Batch
-- Docker
-- Puppeteer
+- [x] Typescript
+- [x] Serverless
+- [x] GraphQL
+- [x] Postgresql
+- [x] Puppeteer
+- [x] Cognito
+- [x] React
+- [x] Storybook
+- [ ] Cypress.io
+- [ ] Circle CI
+- [ ] Websockets
+- [x] AWS Batch
+- [x] Docker
+- [x] Puppeteer
+- [ ] rxjs
