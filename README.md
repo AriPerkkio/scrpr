@@ -1,15 +1,23 @@
 # scrpr
 ```
 packages
-|  ├── #
+├── api
+|  ├── # Cloudfront
+|  ├── # Cognito
+|  ├── # Lambda
+|  └── # GraphQL
 ├── batch
-|  ├── #
+|  ├── # AWS Batch
+|  ├── # Docker
+|  └── # puppeteer
 ├── client
-|  ├── #
+|  ├── # S3 with OAI control
+|  └── # React with typescript
 ├── domain
-|  ├── #
+|  └── # VPC, subnets, routing, ...
 └── storage
    ├── # AWS RDS postgresql
+   └── # knexjs
 ```
 
 - [x] Typescript
