@@ -4,7 +4,7 @@
     "license": "MIT",
     "scripts": {
         "build": "webpack",
-        "test": "node dist/db-test.js",
+        "test": "./scripts/test.sh",
         "deploy": "serverless deploy -v",
         "undeploy": "serverless remove",
         "log": "serverless logs -t -f InitializeDatabase",

@@ -12,10 +12,35 @@ const pg = knex({
     },
 });
 
+const waitForConnection = async (): Promise<void> => {
+    let retries = 0;
+
+    while (retries < 30) {
+        try {
+            await pg.raw("SELECT 'test connection';");
+            process.stdout.write('\n');
+
+            return;
+        } catch (e) {
+            retries++;
+            retries === 1 && process.stdout.write('Retrying connection');
+            process.stdout.write('.');
+
+            await new Promise(resolve => setTimeout(resolve, 2000));
+        }
+    }
+
+    throw new Error('Unable to connect to database');
+};
+
 (async () => {
-    console.log('START');
-    await createConfigurations(pg.schema);
-    console.log('DONE');
+    try {
+        await waitForConnection();
+        await createConfigurations(pg.schema);
+    } catch (e) {
+        console.error(e);
+        process.exit(1);
+    }
 
     process.exit();
 })();
