@@ -13,6 +13,7 @@
     "scripts": {
         "deploy": "./scripts/deploy.sh",
         "undeploy": "./scripts/undeploy.sh",
+        "start": "./scripts/start.sh",
         "test": "./scripts/test.sh"
     },
     "repository": {

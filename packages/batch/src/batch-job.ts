@@ -3,6 +3,7 @@ import knex from 'knex';
 
 (async () => {
     try {
+        // TODO use storage/functions/utils/connection
         const pg = knex({
             client: 'pg',
             connection: {
@@ -10,7 +11,6 @@ import knex from 'knex';
                 user: __DB_USER__,
                 password: __DB_PASSWORD__,
                 database: 'scrpr_database',
-                // TODO set higher timeout
             },
         });
 

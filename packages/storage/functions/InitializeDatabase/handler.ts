@@ -1,21 +1,14 @@
 import CfnLambda, { AsyncHandler } from 'cfn-lambda';
-import knex from 'knex';
 
+import { waitForConnection } from 'functions/utils/connection';
 import { createConfigurations } from './create-tables';
 import { insertConfigurations } from './seed-data';
 
 const RESPONSE = { PhysicalResourceId: 'DatabaseInitialization' };
-const pg = knex({
-    client: 'pg',
-    connection: {
-        host: process.env.DB_HOST,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: 'scrpr_database',
-    },
-});
 
-const Create: AsyncHandler = async () => {
+export const Create: AsyncHandler = async () => {
+    const pg = await waitForConnection();
+
     await createConfigurations(pg.schema);
     await insertConfigurations(pg);
 

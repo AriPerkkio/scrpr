@@ -1,16 +1,21 @@
+const webpack = require('webpack');
 const slsw = require('serverless-webpack');
 const path = require('path');
 
-const isTestMode = Object.keys(slsw.lib.entries).length === 0;
+const isLocalMode = Object.keys(slsw.lib.entries).length === 0;
+const testModeEntries = {
+    'db-test' : './__tests__/db-test.ts',
+    'handler': './functions/InitializeDatabase/handler.ts'
+};
 
 const entry =
-    isTestMode
-        ? { 'db-test' : './__tests__/db-test.ts' }
+    isLocalMode
+        ? testModeEntries
         : slsw.lib.entries;
 
 const output =
-    isTestMode
-        ? { path: path.resolve(__dirname, 'dist'), filename: '[name].js' }
+    isLocalMode
+        ? { path: path.resolve(__dirname, 'dist'), filename: '[name].js', libraryTarget: 'umd' }
         : undefined;
 
 module.exports = {
@@ -21,6 +26,14 @@ module.exports = {
     optimization: {
         minimize: false,
     },
+    plugins: [
+        isLocalMode &&
+            new webpack.DefinePlugin({
+                'process.env.DB_USER': `'test-user'`,
+                'process.env.DB_PASSWORD': `'test-setup-password'`,
+                'process.env.DB_HOST': `'localhost'`,
+            })
+    ].filter(Boolean),
     module: {
         rules: [
             {
@@ -36,5 +49,6 @@ module.exports = {
     },
     resolve: {
         extensions: ['.ts', '.mjs', '.js'],
+        modules: ['node_modules', './'],
     },
 };

@@ -1,5 +1,6 @@
 import knex from 'knex';
 
+// TODO use storage/functions/utils/connection
 const pg = knex({
     client: 'pg',
     connection: {

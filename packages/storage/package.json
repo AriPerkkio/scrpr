@@ -8,6 +8,7 @@
         "deploy": "serverless deploy -v",
         "undeploy": "serverless remove",
         "log": "serverless logs -t -f InitializeDatabase",
+        "start": "./scripts/start.sh",
         "validate": "nodemon -e yml --exec \"serverless deploy --noDeploy -v\""
     },
     "dependencies": {
