@@ -8,6 +8,7 @@
         "deploy:fn": "serverless deploy function --function",
         "undeploy": "serverless remove",
         "validate": "nodemon -e yml --exec \"serverless deploy --noDeploy -v\"",
+        "start": "nodemon --watch functions --exec serverless offline start",
         "log:fn": "serverless logs -t -f"
     },
     "author": "",
@@ -15,7 +16,8 @@
     "dependencies": {
         "apollo-server-lambda": "^2.9.0",
         "knex": "^0.19.3",
-        "pg": "^7.12.1"
+        "pg": "^7.12.1",
+        "scrpr-storage": "1.0.0"
     },
     "devDependencies": {
         "@types/aws-lambda": "^8.10.31",
@@ -27,6 +29,7 @@
         "start-server-and-test": "^1.9.1",
         "ts-loader": "^6.0.4",
         "typescript": "^3.5.3",
+        "webpack": "^4.41.2",
         "webpack-cli": "^3.3.7"
     }
 }

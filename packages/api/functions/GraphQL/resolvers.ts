@@ -1,23 +1,14 @@
-import knex from 'knex';
-
-// TODO use storage/functions/utils/connection
-const pg = knex({
-    client: 'pg',
-    connection: {
-        host: process.env.DB_HOST,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: 'scrpr_database',
-    },
-});
+import { waitForConnection } from 'scrpr-storage/functions/utils/connection';
 
 export const hello = async (): Promise<string> => {
     try {
-        const result = await pg('hello_world')
-            .select('text')
+        const pg = await waitForConnection();
+
+        const result = await pg('configurations')
+            .select('name')
             .first();
 
-        return result.text;
+        return result.name;
     } catch (e) {
         console.log('Error', e);
         return `Error, ${e}`;

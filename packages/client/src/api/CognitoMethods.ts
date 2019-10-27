@@ -72,6 +72,14 @@ const getAuthToken = (): Promise<string> =>
     new Promise((resolve, reject) => {
         const user = userPool.getCurrentUser();
 
+        // Allow development mode to skip authentication.
+        // Nested if-blocks should help webpack to detect and eliminate development code on production build.
+        if (process.env.NODE_ENV === 'development') {
+            if (/keepLoggedIn=true/.test(window.location.search)) {
+                return resolve('mock-auth-token');
+            }
+        }
+
         if (user != null) {
             user.getSession((err: Error, session: CognitoUserSession) => {
                 if (err || !session || !session.isValid()) {

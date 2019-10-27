@@ -15,7 +15,8 @@
     "dependencies": {
         "knex": "^0.19.5",
         "pg": "^7.12.1",
-        "puppeteer": "^1.20.0"
+        "puppeteer": "^1.20.0",
+        "scrpr-storage": "1.0.0"
     },
     "devDependencies": {
         "@types/puppeteer": "^1.20.0",

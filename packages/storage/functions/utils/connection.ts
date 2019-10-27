@@ -1,11 +1,22 @@
 import knex from 'knex';
 
+const getEnvKey = (
+    productionVariable: string | undefined,
+    testVariable: string
+): string | undefined => {
+    if (process.env.NODE_ENV === 'development') {
+        return testVariable;
+    }
+
+    return productionVariable;
+};
+
 const pg = knex({
     client: 'pg',
     connection: {
-        host: process.env.DB_HOST,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
+        user: getEnvKey(process.env.DB_USER, 'test-user'),
+        password: getEnvKey(process.env.DB_PASSWORD, 'test-setup-password'),
+        host: getEnvKey(process.env.DB_HOST, 'localhost'),
         database: 'scrpr_database',
     },
 });
