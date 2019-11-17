@@ -21,10 +21,10 @@ export const authenticatedRoutes = [
         component: lazy(() => import('./Home')),
     },
     {
-        path: '/results',
-        navigationName: 'Results',
+        path: '/configurations',
+        navigationName: 'Configurations',
         icon: 'list',
-        component: lazy(() => import('./Results')),
+        component: lazy(() => import('./Configurations')),
     },
 ];
 

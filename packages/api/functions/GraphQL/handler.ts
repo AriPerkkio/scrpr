@@ -1,15 +1,20 @@
 import { ApolloServer, gql } from 'apollo-server-lambda';
-import { hello } from './resolvers';
+import { Configurations } from './resolvers';
 
 const typeDefs = gql`
+    type Configuration {
+        id: ID!
+        name: String
+    }
+
     type Query {
-        hello: String
+        configurations(id: String): Configuration
     }
 `;
 
 const resolvers = {
     Query: {
-        hello: hello,
+        configurations: Configurations,
     },
 };
 

@@ -1,3 +1,4 @@
 **/dist/*.js
 **/webpack.config.js
 **/scripts/*.js
+**/__generated__/**

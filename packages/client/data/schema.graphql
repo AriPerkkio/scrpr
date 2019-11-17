@@ -1,0 +1,8 @@
+type Configuration {
+    id: ID!
+    name: String
+}
+
+type Query {
+    configurations(id: String): Configuration
+}

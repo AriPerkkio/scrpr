@@ -1,14 +1,14 @@
 import { waitForConnection } from 'scrpr-storage/functions/utils/connection';
 
-export const hello = async (): Promise<string> => {
+export const Configurations = async (userId: string): Promise<string> => {
     try {
         const pg = await waitForConnection();
 
-        const result = await pg('configurations')
-            .select('name')
-            .first();
+        const result = await pg('configurations').first();
 
-        return result.name;
+        console.log(result);
+
+        return result;
     } catch (e) {
         console.log('Error', e);
         return `Error, ${e}`;
