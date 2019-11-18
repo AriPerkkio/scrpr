@@ -1,16 +1,6 @@
-import { ApolloServer, gql } from 'apollo-server-lambda';
+import { ApolloServer } from 'apollo-server-lambda';
 import { Configurations } from './resolvers';
-
-const typeDefs = gql`
-    type Configuration {
-        id: ID!
-        name: String
-    }
-
-    type Query {
-        configurations(id: String): Configuration
-    }
-`;
+import typeDefs from 'schema.graphql';
 
 const resolvers = {
     Query: {

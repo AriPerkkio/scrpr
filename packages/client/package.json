@@ -9,7 +9,7 @@
         "deploy:ui": "yarn build && deploy-aws-s3-cloudfront --bucket scrpr-client-bucket --source=./build --non-interactive",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "relay": "relay-compiler --language typescript --src ./src --schema ./data/schema.graphql",
+        "relay": "relay-compiler",
         "storybook": "start-storybook -p 9001 -c .storybook",
         "undeploy": "./scripts/undeploy.sh && serverless remove"
     },
@@ -60,5 +60,10 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
+    },
+    "babelMacros": {
+        "relay": {
+            "pure": true
+        }
     }
 }

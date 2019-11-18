@@ -14,6 +14,10 @@ module.exports = {
                 use: 'ts-loader',
                 exclude: /node_modules/,
             },
+            {
+                test: /\.graphql?$/,
+                loader: 'webpack-graphql-loader'
+            }
         ],
     },
     externals: {
@@ -22,5 +26,6 @@ module.exports = {
     },
     resolve: {
         extensions: ['.ts', '.mjs', '.js'],
+        modules: ['node_modules', './'],
     },
 };
