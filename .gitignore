@@ -62,7 +62,6 @@ typings/
 
 # stack auto-generated
 .serverless/
-cf-api.json
 cf-batch.yml
 cf-client.yml
 cf-domain.yml

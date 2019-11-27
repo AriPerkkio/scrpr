@@ -3,8 +3,8 @@
     "version": "1.0.0",
     "private": true,
     "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
+        "start": "relay-compiler && react-scripts start",
+        "build": "relay-compiler && react-scripts build",
         "deploy": "serverless deploy -v",
         "deploy:ui": "yarn build && deploy-aws-s3-cloudfront --bucket scrpr-client-bucket --source=./build --non-interactive",
         "test": "react-scripts test",

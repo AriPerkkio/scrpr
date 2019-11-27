@@ -1,0 +1,4 @@
+{
+    "UserPool": "dev-1_pool",
+    "UserPoolClient": "dev-UserPoolClient"
+}

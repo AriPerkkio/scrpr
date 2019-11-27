@@ -11,6 +11,7 @@
     ],
     "private": true,
     "scripts": {
+        "postinstall": "./scripts/postinstall.sh",
         "deploy": "./scripts/deploy.sh",
         "undeploy": "./scripts/undeploy.sh",
         "start": "./scripts/start.sh",
