@@ -4,6 +4,7 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const RelayCompilerWebpackPlugin = require('relay-compiler-webpack-plugin');
 const RelayConfig = require('relay-config');
 const RelayCompilerLanguageTypescript = require('relay-compiler-language-typescript');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const getPath = dir => path.resolve(__dirname, dir);
@@ -36,6 +37,7 @@ module.exports = (env, argv) => {
                 inject: true,
                 template: getPath('public/index.html'),
             }),
+            !isProduction && new ReactRefreshWebpackPlugin({ "disableRefreshCheck": true }),
             isProduction &&
                 new MiniCssExtractPlugin({
                     filename: 'static/css/[name].[contenthash:8].css',
