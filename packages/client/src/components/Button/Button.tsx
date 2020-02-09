@@ -27,7 +27,7 @@ const Button: React.SFC<ButtonProps> = ({ onClick, ...props }) => {
     const [clicked, setClicked] = useReducer(s => !s, false);
 
     const _onClick = (event: React.SyntheticEvent): void => {
-        setClicked({});
+        setClicked();
         onClick && onClick(event);
     };
 

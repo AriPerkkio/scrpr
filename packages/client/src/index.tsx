@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 
 import './index.scss';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
 
 const appRoot = document.getElementById('scrpr-root');
 
@@ -18,5 +17,3 @@ if (process.env.NODE_ENV === 'development') {
         });
     }
 }
-
-serviceWorker.unregister();

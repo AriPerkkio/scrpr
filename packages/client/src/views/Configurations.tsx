@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import { graphql } from 'babel-plugin-relay/macro';
-import { QueryRenderer } from 'react-relay';
+import { graphql, QueryRenderer } from 'react-relay';
 
 import Api from 'api';
 import Environment from 'Environment';
