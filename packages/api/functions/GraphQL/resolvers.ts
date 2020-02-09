@@ -1,16 +1,40 @@
 import { waitForConnection } from 'scrpr-storage/functions/utils/connection';
+import { Configuration } from 'types/schema';
 
-export const Configurations = async (userId: string): Promise<string> => {
+const getConfigurations = async (): Promise<Configuration[] | String> => {
     try {
         const pg = await waitForConnection();
 
-        const result = await pg('configurations').first();
-
-        console.log(result);
-
-        return result;
+        return pg('configurations');
     } catch (e) {
         console.log('Error', e);
         return `Error, ${e}`;
     }
+};
+
+const createConfiguration = async (
+    _: any,
+    configuration: Configuration
+): Promise<Configuration | String> => {
+    try {
+        const pg = await waitForConnection();
+
+        const [createdConfiguration] = await pg('configurations')
+            .returning(['id', 'name', 'url'])
+            .insert(configuration);
+
+        return createdConfiguration;
+    } catch (e) {
+        console.log('Error', e);
+        return `Error, ${e}`;
+    }
+};
+
+export default {
+    Query: {
+        Configurations: getConfigurations,
+    },
+    Mutation: {
+        createConfiguration,
+    },
 };

@@ -1,7 +1,10 @@
 import knex from 'knex';
-import { CONFIGURATIONS, NAME } from './create-tables';
+import { CONFIGURATIONS, NAME, URL } from './create-tables';
 
-const INIT_CONFIGURATION = { [NAME]: 'Initial Configuration' };
+const INIT_CONFIGURATION = {
+    [NAME]: 'React front page',
+    [URL]: 'https://reactjs.org/'
+};
 
 export const insertConfigurations = async (
     client: knex

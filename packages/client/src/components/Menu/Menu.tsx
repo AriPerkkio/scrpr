@@ -10,8 +10,7 @@ import { foreground } from 'styles/variables';
 
 const Nav = styled.nav`
     box-sizing: border-box;
-    width: 10rem;
-    margin-right: 0;
+    padding-right: 2rem;
     border-right: 1px solid ${foreground};
 
     overflow: hidden;

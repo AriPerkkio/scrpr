@@ -1,8 +1,13 @@
 type Configuration {
     id: ID!
     name: String
+    url: String
 }
 
 type Query {
-    configurations(id: String): Configuration
+    Configurations: [Configuration]
+}
+
+type Mutation {
+    createConfiguration(name: String, url: String): Configuration
 }
