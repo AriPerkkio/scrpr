@@ -8,6 +8,10 @@ echo -e "$YELLOW- Starting storage${RESET}"
 ( cd packages/storage ; yarn start )
 echo -e "${GREEN}- Storage started${RESET}"
 
+echo -e "$YELLOW- Starting batch${RESET}"
+( cd packages/batch ; yarn start )
+echo -e "${GREEN}- Batch started${RESET}"
+
 echo -e "$YELLOW- Starting api${RESET}"
 echo -e "$YELLOW- Starting client${RESET}"
 ( cd packages/api ; yarn start ) & ( cd packages/client ; yarn start ) && fg

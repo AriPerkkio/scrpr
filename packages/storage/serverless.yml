@@ -22,18 +22,20 @@ functions:
   InitializeDatabase:
     name: InitializeDatabase
     handler: functions/InitializeDatabase/handler.handler
-    runtime: nodejs8.10
+    runtime: nodejs12.x
     versionFunctions: false
-    timeout: 30
+    timeout: 60
     vpc: # Automatically adds AWSLambdaVPCAccessExecutionRole
       securityGroupIds:
         - ${file(../cf-domain.yml):SecurityGroupId}
       subnetIds:
         - ${file(../cf-domain.yml):SubnetAId}
+        - ${file(../cf-domain.yml):SubnetBId}
     environment:
       DB_USER: ${file(../secrets.yml):DB_USER}
       DB_PASSWORD: ${file(../secrets.yml):DB_PASSWORD}
-      DB_HOST: ${file(../cf-storage.yml):DatabaseHost}
+      DB_HOST:
+        Fn::GetAtt: ['Database', 'Endpoint.Address']
 
 resources:
   Resources:

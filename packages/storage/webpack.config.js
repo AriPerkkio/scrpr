@@ -19,7 +19,7 @@ const output =
         : undefined;
 
 module.exports = {
-    mode: 'development',
+    mode: 'production',
     entry,
     output,
     target: 'node',

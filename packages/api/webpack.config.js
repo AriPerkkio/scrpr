@@ -1,7 +1,7 @@
 const slsw = require('serverless-webpack');
 
 module.exports = {
-    mode: 'development',
+    mode: 'production',
     entry: slsw.lib.entries,
     target: 'node',
     optimization: {

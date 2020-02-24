@@ -4,4 +4,4 @@ Properties:
     Ref: VPC
   Tags:
     - Key: Name
-      Value: ScrprRouteTable
+      Value: ScrprRouteTablePrivate

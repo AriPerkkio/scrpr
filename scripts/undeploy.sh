@@ -24,4 +24,9 @@ echo -e "${YELLOW}- Undeploying domain${RESET}"
 ( cd packages/domain ; yarn undeploy )
 echo -e "${GREEN}- Domain undeploy complete${RESET}"
 
+
+echo -e "${YELLOW}- Removing generated files${RESET}"
+rm -f packages/cf-*.yml
+rm -fr packages/*/.serverless
+
 echo -e "${GREEN}- Stack undeploy complete${RESET}"

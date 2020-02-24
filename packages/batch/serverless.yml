@@ -2,20 +2,17 @@ service: scrpr-batch
 
 plugins:
   - serverless-stack-output
-  - serverless-webpack
 
 custom:
   output:
     file: cf-batch.yml
-  webpack:
-    packager: 'yarn'
-    includeModules:
-      forceInclude:
-        - knex # webpack fails to bundle knex
-        - pg
 
 provider:
   name: aws
+  environment:
+    DB_USER: ${file(../secrets.yml):DB_USER}
+    DB_PASSWORD: ${file(../secrets.yml):DB_PASSWORD}
+    DB_HOST: ${file(../cf-storage.yml):DatabaseHost}
 
 resources:
   Resources:

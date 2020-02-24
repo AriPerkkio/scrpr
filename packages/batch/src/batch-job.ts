@@ -1,33 +1,30 @@
 import puppeteer from 'puppeteer';
-import knex from 'knex';
+
+import { waitForConnection } from 'scrpr-storage/functions/utils/connection';
+import { Configuration } from 'scrpr-api/types/schema';
+
+const executablePath =
+    __PUPPETEER_PATH__ +
+    '/node_modules/puppeteer/.local-chromium/linux-686378/chrome-linux/chrome';
 
 (async () => {
     try {
-        // TODO use storage/functions/utils/connection
-        const pg = knex({
-            client: 'pg',
-            connection: {
-                host: __DB_HOST__,
-                user: __DB_USER__,
-                password: __DB_PASSWORD__,
-                database: 'scrpr_database',
-            },
-        });
+        const pg = await waitForConnection();
 
         const browser = await puppeteer.launch({
-            executablePath:
-                './node_modules/puppeteer/.local-chromium/linux-686378/chrome-linux/chrome',
+            executablePath,
             args: ['--no-sandbox', '--disable-setuid-sandbox'],
         });
         const page = await browser.newPage();
-        await page.goto('https://reactjs.org');
+        const configurations: Configuration[] = await pg('configurations');
 
-        const title = await page.title();
-        const result = await pg('configurations')
-            .limit(1)
-            .first();
+        for (let configuration of configurations) {
+            const { url, name } = configuration;
+            await page.goto(url);
 
-        console.log(`Title: ${title}, name: ${result.name}`);
+            const title = await page.title();
+            console.log({ name, title });
+        }
 
         await browser.close();
         process.exit();

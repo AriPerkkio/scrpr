@@ -10,6 +10,8 @@ Properties:
     MaxvCpus: 1
     MinvCpus: 0
     Subnets:
+      - ${file(../cf-domain.yml):SubnetAId}
+      - ${file(../cf-domain.yml):SubnetBId}
       - ${file(../cf-domain.yml):SubnetPublicId}
     SecurityGroupIds:
       - ${file(../cf-domain.yml):SecurityGroupId}

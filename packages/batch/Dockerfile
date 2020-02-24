@@ -12,7 +12,27 @@ RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key
 
 COPY package.json ./
 
-RUN yarn install --production \
+# Remove local dependencies from package.json. Yarn can't just ignore dev/optional dependencies without failure
+RUN node -e "\
+require('fs').writeFileSync( \
+  './package.json', \
+  JSON.stringify( \
+    { \
+      ...require('./package.json'), \
+      dependencies: Object.entries(require('./package.json').dependencies) \
+        .filter(([name]) => !/scrpr/.test(name)) \
+        .reduce((all, [name, version]) => ({ ...all, [name]: version }), {}) \
+    }, \
+    null, \
+    4 \
+  ), \
+  'utf8' \
+); \
+"
+
+RUN cat ./package.json
+
+RUN yarn install --production --ignore-optional \
     && groupadd -r scrpr-batch-user && useradd -r -g scrpr-batch-user -G audio,video scrpr-batch-user \
     && mkdir -p /home/scrpr-batch-user/ \
     && chown -R scrpr-batch-user:scrpr-batch-user /home/scrpr-batch-user/ \
@@ -21,5 +41,6 @@ RUN yarn install --production \
 COPY dist dist
 
 USER scrpr-batch-user
+ENV DB_HOST scrpr-storage
 
-CMD  ["yarn", "start"]
+CMD  ["node", "dist/batch-job.js"]

@@ -2,6 +2,6 @@ Type: AWS::EC2::Route
 Properties:
   DestinationCidrBlock: '0.0.0.0/0'
   RouteTableId:
-    Ref: RouteTable
-  GatewayId:
-    Ref: InternetGateway
+    Ref: RouteTablePrivate
+  NatGatewayId:
+    Ref: NatGateway

@@ -8,7 +8,7 @@ echo -e "$YELLOW- Building development storage image${RESET}"
 (cd __tests__ ; docker build . -t scrpr-storage)
 echo -e "${GREEN}- Development storage image build complete${RESET}"
 
-RUNNING_CONTAINER=$(docker container ls --filter name=scrpr-storage-dev -aq)
+RUNNING_CONTAINER=$(docker container ls --filter name=scrpr-storage -aq)
 if [[ $RUNNING_CONTAINER != "" ]]; then
   echo -e "${YELLOW}- Removing old container${RESET}"
   docker rm -f $RUNNING_CONTAINER
@@ -16,7 +16,7 @@ if [[ $RUNNING_CONTAINER != "" ]]; then
 fi
 
 echo -e "$YELLOW- Starting development storage container${RESET}"
-docker run -d -p 127.0.0.1:5432:5432 --name scrpr-storage-dev scrpr-storage
+docker run -d -p 127.0.0.1:5432:5432 --name scrpr-storage scrpr-storage
 echo -e "${GREEN}- Development storage container started${RESET}"
 
 echo -e "$YELLOW- Initializing database${RESET}"

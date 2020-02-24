@@ -11,17 +11,17 @@ ECR_URI=${BASH_REMATCH[2]}
 REGION=${BASH_REMATCH[2]}
 
 EXISTING_IMAGE_ID=$(docker images -q scrpr-batch)
-if [[ $EXISTING_IMAGE_ID != "" && $1 != "--test" ]]; then
+if [[ $EXISTING_IMAGE_ID != "" && $1 != "--local" ]]; then
   echo -e "${YELLOW}- Deleting existing image${RESET}"
   docker rmi -f $EXISTING_IMAGE_ID
   echo -e "${GREEN}- Delete complete${RESET}"
 fi
 
-if [[ $1 == "--test" ]]; then
-    yarn build:test
+if [[ $1 == "--local" ]]; then
+    yarn build
     docker build -t scrpr-batch .
     docker rm -f scrpr-batch
-    docker run --link db-test --name scrpr-batch scrpr-batch
+    docker run --link scrpr-storage --name scrpr-batch scrpr-batch
 else
     yarn build
     docker build -t scrpr-batch .

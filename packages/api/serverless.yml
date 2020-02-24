@@ -19,7 +19,7 @@ custom:
 
 provider:
   name: aws
-  runtime: nodejs8.10
+  runtime: nodejs12.x
   apiName: scrpr-api
   versionFunctions: false
   endpointType: regional
@@ -29,7 +29,6 @@ provider:
     subnetIds:
       - ${file(../cf-domain.yml):SubnetAId}
       - ${file(../cf-domain.yml):SubnetBId}
-      - ${file(../cf-domain.yml):SubnetPublicId}
   environment:
     DB_USER: ${file(../secrets.yml):DB_USER}
     DB_PASSWORD: ${file(../secrets.yml):DB_PASSWORD}
@@ -41,8 +40,8 @@ functions:
 
 resources:
   Resources:
-    CloudFrontDistribution: ${file(resources/cloudfront.yml)}
     Authorizer: ${file(resources/cognito-authorizer.yml)}
+    CloudFrontDistribution: ${file(resources/cloudfront.yml)}
     UserPool: ${file(resources/cognito-userpool.yml)}
     UserPoolClient: ${file(resources/cognito-userpoolclient.yml)}
 

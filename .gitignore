@@ -75,3 +75,6 @@ build
 dist
 .webpack
 __generated__
+
+# Development / Testing setup
+__dev-packages__
