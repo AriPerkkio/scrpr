@@ -17,8 +17,20 @@ custom:
 
 provider:
   name: aws
+  iamRoleStatements:
+    - Effect: 'Allow'
+      Action:
+        - 'lambda:InvokeFunction'
+      Resource: '*'
 
 functions:
+  CustomResourceLambdaWrapper:
+    name: CustomResourceLambdaWrapper
+    handler: functions/CustomResourceLambdaWrapper/handler.handler
+    runtime: nodejs12.x
+    versionFunctions: false
+    timeout: 120
+    dependsOn: InitializeDatabaseLambdaFunction
   InitializeDatabase:
     name: InitializeDatabase
     handler: functions/InitializeDatabase/handler.handler

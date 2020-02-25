@@ -1,5 +1,5 @@
+DependsOn: Database
 Type: AWS::CloudFormation::CustomResource
 Properties:
   ServiceToken:
-    Fn::GetAtt: [InitializeDatabaseLambdaFunction, Arn]
-  UUID: ${file(./uuid.js)} # https://github.com/serverless/serverless/issues/4483#issuecomment-350460545
+    Fn::GetAtt: [CustomResourceLambdaWrapperLambdaFunction, Arn]

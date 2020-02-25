@@ -5,7 +5,8 @@ const path = require('path');
 const isLocalMode = Object.keys(slsw.lib.entries).length === 0;
 const testModeEntries = {
     'db-test' : './__tests__/db-test.ts',
-    'handler': './functions/InitializeDatabase/handler.ts'
+    'InitializeDatabase': './functions/InitializeDatabase/handler.ts',
+    'CustomResourceLambdaWrapper': './functions/CustomResourceLambdaWrapper/handler.ts',
 };
 
 const entry =
@@ -46,6 +47,7 @@ module.exports = {
     externals: {
         knex: 'commonjs knex', // webpack fails to bundle knex
         ws: 'ws',
+        'aws-sdk': 'commonjs aws-sdk' // Prodived by Lambda runtime
     },
     resolve: {
         extensions: ['.ts', '.mjs', '.js'],

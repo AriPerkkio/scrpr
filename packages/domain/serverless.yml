@@ -12,19 +12,13 @@ provider:
 
 resources:
   Resources:
-    ElasticIP: ${file(resources/elastic-ip.yml)}
     InternetGateway: ${file(resources/internet-gateway.yml)}
-    NatGateway: ${file(resources/nat-gateway.yml)}
-    RoutePrivate: ${file(resources/route-private.yml)}
     RoutePublic: ${file(resources/route-public.yml)}
-    RouteTablePrivate: ${file(resources/route-table-private.yml)}
     RouteTablePublic: ${file(resources/route-table-public.yml)}
     SecurityGroup: ${file(resources/security-group.yml)}
     SubnetA: ${file(resources/subnet-a.yml)}
     SubnetB: ${file(resources/subnet-b.yml)}
     SubnetPublic: ${file(resources/subnet-public.yml)}
-    SubnetRouteTableAssociationA: ${file(resources/subnet-route-table-association-a.yml)}
-    SubnetRouteTableAssociationB: ${file(resources/subnet-route-table-association-b.yml)}
     SubnetRouteTableAssociationPublic: ${file(resources/subnet-route-table-association-public.yml)}
     VpcGatewayAttachment: ${file(resources/vpc-gateway-attachment.yml)}
     VPC: ${file(resources/vpc.yml)}
@@ -42,3 +36,6 @@ resources:
     SubnetBId:
       Value:
         Ref: SubnetB
+    SubnetPublicId:
+      Value:
+        Ref: SubnetPublic
