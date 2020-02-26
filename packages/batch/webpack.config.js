@@ -1,8 +1,5 @@
-const webpack = require('webpack');
-
-const isLocalmode = false; // TODO
-
 module.exports = {
+    mode: 'production',
     entry: './src/batch-job.ts',
     output: {
         filename: 'batch-job.js',
@@ -11,11 +8,6 @@ module.exports = {
     optimization: {
         minimize: false,
     },
-    plugins: [
-        new webpack.DefinePlugin({
-            __PUPPETEER_PATH__: isLocalmode ? `'../..'` : `'.'`,
-        }),
-    ],
     module: {
         rules: [
             {

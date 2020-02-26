@@ -25,7 +25,7 @@ provider:
   endpointType: regional
   vpc: # Automatically adds AWSLambdaVPCAccessExecutionRole
     securityGroupIds:
-      - ${file(../cf-domain.yml):SecurityGroupId}
+      - ${file(../cf-domain.yml):SecurityGroupDBId}
     subnetIds:
       - ${file(../cf-domain.yml):SubnetAId}
       - ${file(../cf-domain.yml):SubnetBId}

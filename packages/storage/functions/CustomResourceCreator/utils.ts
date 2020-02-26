@@ -15,7 +15,7 @@ export const callInTime = <T>(
         await new Promise(r => setTimeout(r, 1000));
 
         if (status.current) {
-            console.log('Completed task in time');
+            console.log(`Completed task in ${i}s`);
             return response;
         }
     }

@@ -9,10 +9,6 @@ custom:
 
 provider:
   name: aws
-  environment:
-    DB_USER: ${file(../secrets.yml):DB_USER}
-    DB_PASSWORD: ${file(../secrets.yml):DB_PASSWORD}
-    DB_HOST: ${file(../cf-storage.yml):DatabaseHost}
 
 resources:
   Resources:

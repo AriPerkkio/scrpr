@@ -7,3 +7,10 @@ Properties:
       Fn::Join: ["", [ { "Ref": "AWS::AccountId" }, '.dkr.ecr.', { Ref: "AWS::Region" }, ".amazonaws.com/", { Ref: ECRRepository }, ":latest" ]]
     Memory: 512
     Vcpus: 1
+    Environment:
+      - Name: DB_USER
+        Value: ${file(../secrets.yml):DB_USER}
+      - Name: DB_PASSWORD
+        Value: ${file(../secrets.yml):DB_PASSWORD}
+      - Name: DB_HOST
+        Value: ${file(../cf-storage.yml):DatabaseHost}

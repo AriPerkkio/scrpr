@@ -2,4 +2,4 @@ DependsOn: Database
 Type: AWS::CloudFormation::CustomResource
 Properties:
   ServiceToken:
-    Fn::GetAtt: [CustomResourceLambdaWrapperLambdaFunction, Arn]
+    Fn::GetAtt: [CustomResourceCreatorLambdaFunction, Arn]

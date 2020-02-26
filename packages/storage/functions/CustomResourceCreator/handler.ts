@@ -28,7 +28,7 @@ const callDatabaseInitialization = async () => {
 };
 
 export const handler = CfnLambda({
-    AsyncCreate: callInTime(callDatabaseInitialization, RESPONSE, 20),
+    AsyncCreate: callInTime(callDatabaseInitialization, RESPONSE, 850),
     AsyncUpdate: asyncNoop,
     AsyncDelete: asyncNoop,
 });

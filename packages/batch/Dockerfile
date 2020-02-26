@@ -41,6 +41,6 @@ RUN yarn install --production --ignore-optional \
 COPY dist dist
 
 USER scrpr-batch-user
-ENV DB_HOST scrpr-storage
+ENV PUPPETEER_PATH '.'
 
 CMD  ["node", "dist/batch-job.js"]

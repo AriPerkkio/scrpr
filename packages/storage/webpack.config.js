@@ -4,9 +4,8 @@ const path = require('path');
 
 const isLocalMode = Object.keys(slsw.lib.entries).length === 0;
 const testModeEntries = {
-    'db-test' : './__tests__/db-test.ts',
     'InitializeDatabase': './functions/InitializeDatabase/handler.ts',
-    'CustomResourceLambdaWrapper': './functions/CustomResourceLambdaWrapper/handler.ts',
+    'CustomResourceCreator': './functions/CustomResourceCreator/handler.ts',
 };
 
 const entry =

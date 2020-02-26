@@ -24,22 +24,22 @@ provider:
       Resource: '*'
 
 functions:
-  CustomResourceLambdaWrapper:
-    name: CustomResourceLambdaWrapper
-    handler: functions/CustomResourceLambdaWrapper/handler.handler
+  CustomResourceCreator:
+    name: CustomResourceCreator
+    handler: functions/CustomResourceCreator/handler.handler
     runtime: nodejs12.x
     versionFunctions: false
-    timeout: 120
+    timeout: 300
     dependsOn: InitializeDatabaseLambdaFunction
   InitializeDatabase:
     name: InitializeDatabase
     handler: functions/InitializeDatabase/handler.handler
     runtime: nodejs12.x
     versionFunctions: false
-    timeout: 60
-    vpc: # Automatically adds AWSLambdaVPCAccessExecutionRole
+    timeout: 300
+    vpc:
       securityGroupIds:
-        - ${file(../cf-domain.yml):SecurityGroupId}
+        - ${file(../cf-domain.yml):SecurityGroupDBId}
       subnetIds:
         - ${file(../cf-domain.yml):SubnetAId}
         - ${file(../cf-domain.yml):SubnetBId}

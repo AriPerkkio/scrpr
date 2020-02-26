@@ -1,7 +1,7 @@
 DependsOn: VPC
 Type: AWS::EC2::SecurityGroup
 Properties:
-  GroupDescription: Security Group for scrpr functions
+  GroupDescription: Security Group for scrpr DB resources
   VpcId:
     Ref: VPC
   SecurityGroupIngress:
@@ -17,4 +17,4 @@ Properties:
   Tags:
     -
       Key: "Name"
-      Value: "ScrprSecurityGroup"
+      Value: "ScrprSecurityGroupDB"

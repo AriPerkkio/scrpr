@@ -13,6 +13,7 @@ module.exports = (env, argv) => {
     const isProduction = argv.mode === 'production';
 
     return {
+        mode: argv.mode || 'production',
         entry: getPath('src/index.tsx'),
         output: {
             path: getPath('build'),
@@ -61,6 +62,7 @@ module.exports = (env, argv) => {
                     test: /\.(js|ts|tsx)$/,
                     exclude: /node_modules/,
                     loader: 'babel-loader',
+                    options: { envName: 'process.env.NODE_ENV' }
                 },
             ],
         },

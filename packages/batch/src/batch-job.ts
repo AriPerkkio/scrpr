@@ -4,7 +4,7 @@ import { waitForConnection } from 'scrpr-storage/functions/utils/connection';
 import { Configuration } from 'scrpr-api/types/schema';
 
 const executablePath =
-    __PUPPETEER_PATH__ +
+    process.env.PUPPETEER_PATH +
     '/node_modules/puppeteer/.local-chromium/linux-686378/chrome-linux/chrome';
 
 (async () => {

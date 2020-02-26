@@ -15,7 +15,8 @@ resources:
     InternetGateway: ${file(resources/internet-gateway.yml)}
     RoutePublic: ${file(resources/route-public.yml)}
     RouteTablePublic: ${file(resources/route-table-public.yml)}
-    SecurityGroup: ${file(resources/security-group.yml)}
+    SecurityGroupDB: ${file(resources/security-group-db.yml)}
+    SecurityGroupHTTP: ${file(resources/security-group-http.yml)}
     SubnetA: ${file(resources/subnet-a.yml)}
     SubnetB: ${file(resources/subnet-b.yml)}
     SubnetPublic: ${file(resources/subnet-public.yml)}
@@ -27,9 +28,12 @@ resources:
     VPCId:
       Value:
         Ref: VPC
-    SecurityGroupId:
+    SecurityGroupDBId:
       Value:
-        Ref: SecurityGroup
+        Ref: SecurityGroupDB
+    SecurityGroupHTTPId:
+      Value:
+        Ref: SecurityGroupHTTP
     SubnetAId:
       Value:
         Ref: SubnetA

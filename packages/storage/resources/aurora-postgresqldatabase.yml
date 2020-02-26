@@ -11,6 +11,6 @@ Properties:
     MaxCapacity: 2
     MinCapacity: 2
   VpcSecurityGroupIds:
-    - ${file(../cf-domain.yml):SecurityGroupId}
+    - ${file(../cf-domain.yml):SecurityGroupDBId}
   DBSubnetGroupName:
     Ref: DBSubnetGroup

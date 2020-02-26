@@ -5,7 +5,7 @@ GREEN='\e[92m';
 RESET='\e[0m';
 
 echo -e "$YELLOW- Building development storage image${RESET}"
-(cd __tests__ ; docker build . -t scrpr-storage)
+docker build . -t scrpr-storage
 echo -e "${GREEN}- Development storage image build complete${RESET}"
 
 RUNNING_CONTAINER=$(docker container ls --filter name=scrpr-storage -aq)
@@ -21,5 +21,13 @@ echo -e "${GREEN}- Development storage container started${RESET}"
 
 echo -e "$YELLOW- Initializing database${RESET}"
 yarn build
-node -e "require('./dist/handler.js').Create().then(() => process.exit()).catch(e => { console.error(e); process.exit(1); })"
+node -e " \
+  require('./dist/InitializeDatabase.js') \
+    .handler() \
+    .then(() => process.exit()) \
+    .catch(e => { \
+      console.error(e); \
+      process.exit(1); \
+  }) \
+"
 echo -e "${GREEN}- Initialization complete${RESET}"

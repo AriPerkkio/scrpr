@@ -1,0 +1,19 @@
+DependsOn: VPC
+Type: AWS::EC2::SecurityGroup
+Properties:
+  GroupDescription: Security Group for scrpr HTTP resources
+  VpcId:
+    Ref: VPC
+  SecurityGroupEgress:
+    - CidrIp: 0.0.0.0/0
+      IpProtocol: tcp
+      FromPort: 80
+      ToPort: 80
+    - CidrIp: 0.0.0.0/0
+      IpProtocol: tcp
+      FromPort: 443
+      ToPort: 443
+  Tags:
+    -
+      Key: "Name"
+      Value: "ScrprSecurityGroupHTTP"
