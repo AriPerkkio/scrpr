@@ -12,19 +12,26 @@ const RESPONSE = { PhysicalResourceId: 'DatabaseInitialization' };
 const FunctionName = 'InitializeDatabase';
 const InvocationType = 'RequestResponse';
 
-// TODO Read region from cf-domain.yml
-const lambda = new Lambda({ region: 'us-east-1' });
+const lambda = new Lambda({ region: process.env.CF_REGION });
 const asyncNoop: AsyncHandler = async () => RESPONSE;
 
 const callDatabaseInitialization = async () => {
-    await new Promise(resolve => {
-        lambda.invoke({ FunctionName, InvocationType }, (error, data) => {
-            if (error) console.log('Error', error);
-            console.log('Received data', JSON.stringify(data, null, 4));
+    try {
+        await new Promise((resolve, reject) => {
+            lambda.invoke({ FunctionName, InvocationType }, (error, data) => {
+                if (error) {
+                    console.log('Error', error);
+                    return reject(error);
+                }
 
-            resolve();
+                console.log('Received data', JSON.stringify(data, null, 4));
+
+                resolve();
+            });
         });
-    });
+    } catch (e) {
+        throw new Error(e);
+    }
 };
 
 export const handler = CfnLambda({

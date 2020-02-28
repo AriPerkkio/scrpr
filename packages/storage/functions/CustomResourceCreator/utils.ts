@@ -7,16 +7,28 @@ export const callInTime = <T>(
     response: T,
     seconds: number
 ) => async (): Promise<T> => {
-    const status = { current: false };
+    const status = { done: false, error: false };
 
-    callback().then(() => (status.current = true));
+    function runCallback() {
+        status.done = false;
+        status.error = false;
 
-    for (let i = 0; i < seconds; i++) {
+        callback()
+            .then(() => (status.done = true))
+            .catch(() => (status.error = true));
+    }
+
+    runCallback();
+
+    for (let timer = 0; timer < seconds; timer++) {
         await new Promise(r => setTimeout(r, 1000));
 
-        if (status.current) {
-            console.log(`Completed task in ${i}s`);
+        if (status.done) {
+            console.log(`Completed task in ${timer}s`);
             return response;
+        } else if (status.error) {
+            console.log(`Task failed in ${timer}s. Retrying`);
+            runCallback();
         }
     }
 

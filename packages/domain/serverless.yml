@@ -43,3 +43,6 @@ resources:
     SubnetPublicId:
       Value:
         Ref: SubnetPublic
+    Region:
+      Value:
+        Ref: AWS::Region
