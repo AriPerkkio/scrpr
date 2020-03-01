@@ -4,8 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "build": "webpack --env=production",
-        "build:local": "webpack --env=local",
+        "build": "webpack",
         "start": "./scripts/start.sh",
         "deploy": "serverless deploy -v && ./scripts/build.sh --deploy",
         "undeploy": "./scripts/undeploy.sh && serverless remove",

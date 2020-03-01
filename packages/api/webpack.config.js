@@ -1,4 +1,7 @@
+const webpack = require('webpack');
 const slsw = require('serverless-webpack');
+
+const isDevelopmentMode = process.env.NODE_ENV === 'development';
 
 module.exports = {
     mode: 'production',
@@ -7,6 +10,13 @@ module.exports = {
     optimization: {
         minimize: false,
     },
+    plugins: [
+        isDevelopmentMode && new webpack.DefinePlugin({
+            'process.env.DB_USER': `'test-user'`,
+            'process.env.DB_PASSWORD': `'test-setup-password'`,
+            'process.env.DB_HOST': `'localhost'`,
+        })
+    ].filter(Boolean),
     module: {
         rules: [
             {

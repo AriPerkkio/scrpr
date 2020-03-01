@@ -32,7 +32,7 @@ functions:
     timeout: 300
     dependsOn: InitializeDatabaseLambdaFunction
     environment:
-      CF_REGION ${file(../cf-domain.yml):REGION}
+      CF_REGION: ${file(../cf-domain.yml):Region}
   InitializeDatabase:
     name: InitializeDatabase
     handler: functions/InitializeDatabase/handler.handler
