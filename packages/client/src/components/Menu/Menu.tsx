@@ -1,59 +1,84 @@
-import React from 'react';
-import classNames from 'classnames';
-import styled from 'styled-components';
+import React, { useReducer } from 'react';
+import {
+    AppBar,
+    IconButton,
+    Toolbar,
+    Typography,
+    makeStyles,
+} from '@material-ui/core';
+import { Menu as MenuIcon } from '@material-ui/icons';
 
-import NavItem from './NavItem';
-import Api from 'api';
-import { authenticatedRoutes } from 'views/Routes';
+import MenuDrawer from './MenuDrawer';
+import ThemeToggle from 'components/theme/ThemeToggle';
 import { useAuthentication } from 'hooks';
-import { foreground } from 'styles/variables';
 
-const Nav = styled.nav`
-    box-sizing: border-box;
-    padding-right: 2rem;
-    border-right: 1px solid ${foreground};
+interface MenuProps {
+    children?: React.ReactChild;
+}
 
-    overflow: hidden;
-    transition: all 0.5s;
+const useStyles = makeStyles(theme => ({
+    contentWrapper: {
+        display: 'flex',
+        'flex-direction': 'column',
+        width: '100%',
+    },
+    appBar: {
+        'background-color': theme.palette.background.paper,
+        transition: theme.transitions.create('background-color', {
+            easing: theme.transitions.easing.easeOut,
+            duration: theme.transitions.duration.enteringScreen,
+        }),
+    },
+    content: {
+        width: '100%',
+        'padding-top': '2rem',
+    },
+    themeButton: {
+        'margin-left': 'auto',
+    },
+    heading: {
+        color: theme.palette.text.primary,
+        'margin-left': '2rem',
+    },
+}));
 
-    &.is-hidden {
-        border-right-width: 0;
-        width: 0;
-        margin-right: 10rem;
-        opacity: 0;
-    }
-`;
-
-const NavList = styled.ul`
-    padding-left: 2rem;
-    padding-top: 1rem;
-    list-style: none;
-`;
-
-const Menu: React.FC = () => {
+const Menu: React.FC<MenuProps> = props => {
+    const styles = useStyles();
+    const [isDrawerOpen, toggleDrawer] = useReducer(s => !s, false);
     const isAuthenticated = useAuthentication();
 
     return (
-        <Nav className={classNames(!isAuthenticated && 'is-hidden')}>
-            <NavList>
-                <NavItem to='/login' onClick={Api.logout} icon='logout'>
-                    Logout
-                </NavItem>
+        <>
+            <MenuDrawer
+                open={isDrawerOpen}
+                anchor='left'
+                onClose={toggleDrawer}
+            />
 
-                {authenticatedRoutes.map(route => (
-                    <NavItem
-                        key={route.path}
-                        to={`/auth${trimPath(route.path)}`}
-                        icon={route.icon}>
-                        {route.navigationName}
-                    </NavItem>
-                ))}
-            </NavList>
-        </Nav>
+            <div className={styles.contentWrapper}>
+                <AppBar position='static' className={styles.appBar}>
+                    <Toolbar>
+                        {isAuthenticated && (
+                            <IconButton onClick={toggleDrawer}>
+                                <MenuIcon />
+                            </IconButton>
+                        )}
+
+                        <Typography
+                            component='h1'
+                            variant='h5'
+                            className={styles.heading}>
+                            Scrpr
+                        </Typography>
+
+                        <ThemeToggle className={styles.themeButton} />
+                    </Toolbar>
+                </AppBar>
+
+                <div className={styles.content}>{props.children}</div>
+            </div>
+        </>
     );
 };
-
-const removeRegex = /(\(|\)|\|)/g;
-const trimPath = (path: string): string => path.replace(removeRegex, '');
 
 export default Menu;

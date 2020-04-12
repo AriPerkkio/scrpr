@@ -1,20 +1,10 @@
-import React, { useState, useReducer } from 'react';
+import React, { useState } from 'react';
 import { graphql, commitMutation } from 'react-relay';
+import { Button, TextField, makeStyles } from '@material-ui/core';
 
-import Form, { Input } from 'components/Form';
-import Button from 'components/Button';
 import Environment from 'Environment';
-
-interface ConfigurationFormState {
-    name: string;
-    url: string;
-}
-
-const initialState = { name: '', url: '' };
-const reducer = (
-    state: ConfigurationFormState,
-    next: {}
-): ConfigurationFormState => ({ ...state, ...next });
+import { useEventValue } from 'hooks';
+import { RESET_EVENT } from 'hooks/useEventValue';
 
 const mutation = graphql`
     mutation ConfigurationFormMutation($name: String!, $url: String!) {
@@ -25,48 +15,75 @@ const mutation = graphql`
     }
 `;
 
-const ConfigurationForm = () => {
-    const [configuration, updateConfiguration] = useReducer(
-        reducer,
-        initialState
-    );
+const useStyles = makeStyles(theme => ({
+    form: {
+        display: 'flex',
+        'flex-direction': 'column',
+        'align-items': 'center',
+    },
+}));
+
+const ConfigurationForm: React.FC = () => {
+    const styles = useStyles();
+    const [name, onNameChange] = useEventValue();
+    const [url, onUrlChange] = useEventValue();
     const [isLoading, setLoading] = useState(false);
-    const [error, setError] = useState(false);
+    const [, setError] = useState(false);
 
     return (
-        <Form header='Create Configuration' isLoading={isLoading} error={error}>
-            <Input
+        <form className={styles.form}>
+            <TextField
+                required
+                variant='outlined'
+                margin='normal'
                 id='name'
+                label='Name'
+                name='name'
                 type='text'
-                value={configuration.name}
-                onChange={updateConfiguration}>
+                value={name}
+                onChange={onNameChange}
+                disabled={isLoading}>
                 Name
-            </Input>
+            </TextField>
 
-            <Input
+            <TextField
+                required
+                variant='outlined'
+                margin='normal'
                 id='url'
+                label='URL'
+                name='url'
                 type='text'
-                value={configuration.url}
-                onChange={updateConfiguration}>
+                value={url}
+                onChange={onUrlChange}
+                disabled={isLoading}>
                 URL
-            </Input>
+            </TextField>
 
             <Button
+                variant='outlined'
+                type='submit'
+                disabled={isLoading}
                 onClick={() => {
                     setLoading(true);
+                    setError(false);
+
                     commitMutation(Environment, {
                         mutation,
-                        variables: configuration,
+                        variables: { name, url },
                         onCompleted: () => {
-                            setLoading(false);
-                            updateConfiguration(initialState);
+                            onNameChange(RESET_EVENT);
+                            onUrlChange(RESET_EVENT);
                         },
-                        onError: () => setError(true),
+                        onError: () => {
+                            setError(true);
+                            setLoading(false);
+                        },
                     });
                 }}>
                 Create configuration
             </Button>
-        </Form>
+        </form>
     );
 };
 

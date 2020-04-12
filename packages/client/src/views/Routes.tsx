@@ -1,5 +1,8 @@
 import React, { lazy } from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
+import { Home, List } from '@material-ui/icons';
+import { CircularProgress, makeStyles } from '@material-ui/core';
+
 import Authenticated from './Authenticated';
 
 const publicRoutes = [
@@ -17,13 +20,13 @@ export const authenticatedRoutes = [
     {
         path: '/(home|)',
         navigationName: 'Home',
-        icon: 'home',
+        icon: Home,
         component: lazy(() => import('./Home')),
     },
     {
         path: '/configurations',
         navigationName: 'Configurations',
-        icon: 'list',
+        icon: List,
         component: lazy(() => import('./Configurations')),
     },
 ];
@@ -53,5 +56,27 @@ const Routes: React.SFC = () => (
         <Redirect to='/auth/home' />
     </Switch>
 );
+
+const useStyles = makeStyles(theme => ({
+    loaderWrapper: {
+        display: 'flex',
+        'justify-content': 'center',
+        width: '100%',
+        'margin-top': '4rem',
+    },
+    loader: {
+        color: theme.palette.text.primary,
+    },
+}));
+
+export const RouteSuspender: React.FC = () => {
+    const styles = useStyles();
+
+    return (
+        <div className={styles.loaderWrapper}>
+            <CircularProgress className={styles.loader} size='3.5rem' />
+        </div>
+    );
+};
 
 export default Routes;

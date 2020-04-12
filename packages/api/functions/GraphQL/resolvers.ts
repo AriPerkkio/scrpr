@@ -1,7 +1,7 @@
 import { waitForConnection } from 'scrpr-storage/functions/utils/connection';
 import { Configuration } from 'types/schema';
 
-const getConfigurations = async (): Promise<Configuration[] | String> => {
+const getConfigurations = async (): Promise<Configuration[] | string> => {
     try {
         const pg = await waitForConnection();
 
@@ -15,7 +15,7 @@ const getConfigurations = async (): Promise<Configuration[] | String> => {
 const createConfiguration = async (
     _: any,
     configuration: Configuration
-): Promise<Configuration | String> => {
+): Promise<Configuration | string> => {
     try {
         const pg = await waitForConnection();
 

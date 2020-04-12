@@ -1,15 +1,9 @@
 import styled from 'styled-components';
-import { foreground, background, firaCode } from './variables';
+import { withTheme } from '@material-ui/core';
 
-export const RootContainer = styled.div`
+export const RootContainer = withTheme(styled.div`
     height: 100%;
-    background-color: ${background};
-    display: flex;
-
-    color: ${foreground};
-    font-family: ${firaCode};
-`;
-
-export const MainContent = styled.main`
-    margin: 2rem;
-`;
+    background-color: ${props => props.theme.palette.background.default};
+    font-family: Roboto;
+    transition: background-color 0.5s;
+`);

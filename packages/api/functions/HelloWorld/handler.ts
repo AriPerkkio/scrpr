@@ -2,14 +2,15 @@ import {
     APIGatewayEvent,
     APIGatewayProxyResult,
     APIGatewayEventRequestContext,
-    AuthResponseContext,
 } from 'aws-lambda';
 
-const parseRequest = (event: APIGatewayEvent): { userId: string } => {
+const parseRequest = (
+    event: APIGatewayEvent
+): { userId: string | number | true | {} } => {
     const { requestContext }: APIGatewayEvent = event;
     const { authorizer }: APIGatewayEventRequestContext = requestContext;
-    const { claims }: AuthResponseContext = authorizer || {};
-    const { sub }: { sub: string } = claims || {};
+    const { claims } = authorizer || {};
+    const { sub } = claims || {};
 
     return { userId: sub };
 };

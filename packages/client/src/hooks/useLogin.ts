@@ -9,7 +9,7 @@ interface UseLoginState {
 }
 
 interface UseLoginProps extends UseLoginState {
-    onSubmit: (email: string, password: string) => void;
+    onLogin: (email: string, password: string) => void;
 }
 
 const initialState = {
@@ -25,7 +25,7 @@ const useLogin = (): UseLoginProps => {
     const [{ isLoading, error }, dispatch] = useReducer(reducer, initialState);
     const { history } = useRouter();
 
-    const onSubmit = (email: string, password: string): void => {
+    const onLogin = (email: string, password: string): void => {
         dispatch({ isLoading: true });
 
         Api.login(email, password)
@@ -45,7 +45,7 @@ const useLogin = (): UseLoginProps => {
     return {
         isLoading,
         error,
-        onSubmit,
+        onLogin,
     };
 };
 

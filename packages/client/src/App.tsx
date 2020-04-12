@@ -1,22 +1,23 @@
 import React, { Suspense } from 'react';
 import { HashRouter } from 'react-router-dom';
 
-import Routes from 'views/Routes';
+import Routes, { RouteSuspender } from 'views/Routes';
 import Menu from 'components/Menu';
-import { RootContainer, MainContent } from 'styles/layouts';
+import ThemeProvider from 'components/theme/ThemeProvider';
+import { RootContainer } from 'styles';
 
 const App: React.FC = () => (
-    <HashRouter>
+    <ThemeProvider>
         <RootContainer>
-            <Menu />
-
-            <MainContent>
-                <Suspense fallback='Loading...'>
-                    <Routes />
-                </Suspense>
-            </MainContent>
+            <HashRouter>
+                <Menu>
+                    <Suspense fallback={<RouteSuspender />}>
+                        <Routes />
+                    </Suspense>
+                </Menu>
+            </HashRouter>
         </RootContainer>
-    </HashRouter>
+    </ThemeProvider>
 );
 
 export default App;

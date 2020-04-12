@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SignupForm from 'components/SignupForm';
+import SignupForm from 'components/user/SignupForm';
 
 const Signup: React.FC = () => <SignupForm />;
 

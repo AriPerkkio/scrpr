@@ -11,14 +11,27 @@
         "undeploy": "./scripts/undeploy.sh && serverless remove"
     },
     "dependencies": {
+        "@material-ui/core": "4.9.9",
+        "@material-ui/icons": "^4.9.1",
+        "@material-ui/lab": "^4.0.0-alpha.48",
+        "@types/node": "^12.7.1",
+        "@types/pngjs": "^3.3.2",
+        "@typescript-eslint/eslint-plugin": "^2.21.0",
         "amazon-cognito-identity-js": "^3.0.14",
         "classnames": "^2.2.6",
+        "eslint-config-prettier": "^6.10.0",
+        "eslint-config-react-app": "^5.2.0",
+        "eslint-plugin-flowtype": "^4.6.0",
+        "eslint-plugin-import": "^2.20.1",
+        "eslint-plugin-react": "^7.18.3",
+        "eslint-plugin-react-hooks": "^2.5.0",
         "react": "^16.12.0",
         "react-dom": "^16.12.0",
         "react-relay": "^8.0.0",
         "react-router-dom": "^5.0.1",
         "scrpr-api": "1.0.0",
-        "styled-components": "^5.0.1"
+        "styled-components": "^5.0.1",
+        "typescript": "^3.5.3"
     },
     "devDependencies": {
         "@babel/core": "^7.8.4",
