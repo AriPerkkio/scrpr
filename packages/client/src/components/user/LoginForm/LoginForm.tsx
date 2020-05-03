@@ -8,9 +8,10 @@ import { useLogin, useEventValue } from 'hooks';
 const useStyles = makeStyles(theme => ({
     link: {
         color: theme.palette.text.secondary,
-    },
-    '&:hover, &:active': {
-        color: theme.palette.text.primary,
+
+        '&:hover, &:active': {
+            color: theme.palette.text.primary,
+        },
     },
 }));
 

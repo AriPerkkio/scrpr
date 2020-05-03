@@ -1647,6 +1647,14 @@
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
 
+"@restart/hooks@^0.3.1":
+  version "0.3.22"
+  resolved "https://registry.yarnpkg.com/@restart/hooks/-/hooks-0.3.22.tgz#bb7e27c832bf576f56977d0a0b8b9d8ccee877b8"
+  integrity sha512-tW0T3hP6emYNOc76/iC96rlu+f7JYLSVk/Wnn+7dj1gJUcw4CkQNLy16vx2mBLtVKsFMZ9miVEZXat8blruDHQ==
+  dependencies:
+    lodash "^4.17.15"
+    lodash-es "^4.17.15"
+
 "@serverless/cli@^1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@serverless/cli/-/cli-1.4.0.tgz#46c35c35c2ba8ae224033e7157754aed789074f0"
@@ -9642,6 +9650,11 @@ locate-path@^3.0.0:
     p-locate "^3.0.0"
     path-exists "^3.0.0"
 
+lodash-es@^4.17.15:
+  version "4.17.15"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.15.tgz#21bd96839354412f23d7a10340e5eac6ee455d78"
+  integrity sha512-rlrc3yU3+JNOpZ9zj5pQtxnx2THmvRykwL4Xlxoa8I9lHBlVbbyPhgyPMioxVZ4NqyxaVVtaJnzsyOidQIhyyQ==
+
 lodash.debounce@^4.0.8:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
@@ -12333,6 +12346,14 @@ relay-config@^8.0.0:
   integrity sha512-CQhl+a7tjV44zfR+J3vKouFV4YEqVt30Ilucj6K4ye6PrhaJa9YekafLoqVaFr9lAwQvECY9YzPrUI95jzBA4Q==
   dependencies:
     cosmiconfig "^5.0.5"
+
+relay-hooks@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/relay-hooks/-/relay-hooks-3.3.0.tgz#d77f75d7a8d2a611182bc2397d872b812871b353"
+  integrity sha512-An0tIPPhY/PaLkTLSMUsF65vjnOMWy33QhnSIZrz43LlJx+RiWioPphP38XdEy5QANGFPPqmH9p/K900uj56Sw==
+  dependencies:
+    "@restart/hooks" "^0.3.1"
+    fbjs "^1.0.0"
 
 relay-runtime@8.0.0:
   version "8.0.0"

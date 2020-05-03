@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql, QueryRenderer } from 'react-relay';
+import { useQuery, graphql } from 'relay-hooks';
 import {
     Paper,
     Table,
@@ -12,7 +12,11 @@ import {
 } from '@material-ui/core';
 import { Configuration } from 'scrpr-api/types/schema';
 
-import Environment from 'Environment';
+interface ConfigurationQuery {
+    response: {
+        Configurations: Configuration[];
+    };
+}
 
 const query = graphql`
     query ConfigurationsListQuery {
@@ -23,37 +27,28 @@ const query = graphql`
     }
 `;
 
-const ConfigurationsList: React.FC = () => (
-    <QueryRenderer
-        environment={Environment}
-        query={query}
-        variables={{}}
-        render={({ error, props }) => {
-            if (error) {
-                return <div>Error</div>;
-            }
+const ConfigurationsList: React.FC = () => {
+    const { props, error } = useQuery<ConfigurationQuery>(query);
 
-            if (!props) {
-                return <div>Loading</div>;
-            }
+    if (error) {
+        return <div>Error</div>;
+    }
 
-            const { Configurations: configurations } = props as {
-                Configurations: Configuration[];
-            };
+    if (!props) {
+        return <div>Loading</div>;
+    }
 
-            return (
-                <ConfigurationsTable>
-                    {configurations.map(configuration => (
-                        <TableRow key={configuration.name}>
-                            <TableCell>{configuration.name}</TableCell>
-                            <TableCell>{configuration.url}</TableCell>
-                        </TableRow>
-                    ))}
-                </ConfigurationsTable>
-            );
-        }}
-    />
-);
+    return (
+        <ConfigurationsTable>
+            {props.Configurations.map(configuration => (
+                <TableRow key={configuration.name}>
+                    <TableCell>{configuration.name}</TableCell>
+                    <TableCell>{configuration.url}</TableCell>
+                </TableRow>
+            ))}
+        </ConfigurationsTable>
+    );
+};
 
 const useStyles = makeStyles(() => ({ wrapper: { margin: '2rem' } }));
 

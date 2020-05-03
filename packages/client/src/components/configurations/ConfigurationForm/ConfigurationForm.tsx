@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
-import { graphql, commitMutation } from 'react-relay';
-import { Button, TextField, makeStyles } from '@material-ui/core';
+import React from 'react';
+import { useMutation, graphql } from 'relay-hooks';
+import styled from 'styled-components';
+import { Button, TextField } from '@material-ui/core';
 
-import Environment from 'Environment';
 import { useEventValue } from 'hooks';
 import { RESET_EVENT } from 'hooks/useEventValue';
+import { Configuration } from 'scrpr-api/types/schema';
+
+interface ConfigurationMutation {
+    variables: Configuration;
+    response: Configuration;
+}
 
 const mutation = graphql`
     mutation ConfigurationFormMutation($name: String!, $url: String!) {
@@ -15,23 +21,21 @@ const mutation = graphql`
     }
 `;
 
-const useStyles = makeStyles(theme => ({
-    form: {
-        display: 'flex',
-        'flex-direction': 'column',
-        'align-items': 'center',
-    },
-}));
+const Form = styled.form`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
 
 const ConfigurationForm: React.FC = () => {
-    const styles = useStyles();
     const [name, onNameChange] = useEventValue();
     const [url, onUrlChange] = useEventValue();
-    const [isLoading, setLoading] = useState(false);
-    const [, setError] = useState(false);
+    const [mutate, { loading, error }] = useMutation<ConfigurationMutation>(
+        mutation
+    );
 
     return (
-        <form className={styles.form}>
+        <Form>
             <TextField
                 required
                 variant='outlined'
@@ -42,7 +46,7 @@ const ConfigurationForm: React.FC = () => {
                 type='text'
                 value={name}
                 onChange={onNameChange}
-                disabled={isLoading}>
+                disabled={loading}>
                 Name
             </TextField>
 
@@ -56,34 +60,28 @@ const ConfigurationForm: React.FC = () => {
                 type='text'
                 value={url}
                 onChange={onUrlChange}
-                disabled={isLoading}>
+                disabled={loading}>
                 URL
             </TextField>
 
             <Button
                 variant='outlined'
                 type='submit'
-                disabled={isLoading}
-                onClick={() => {
-                    setLoading(true);
-                    setError(false);
-
-                    commitMutation(Environment, {
-                        mutation,
+                disabled={loading}
+                onClick={() =>
+                    mutate({
                         variables: { name, url },
                         onCompleted: () => {
                             onNameChange(RESET_EVENT);
                             onUrlChange(RESET_EVENT);
                         },
-                        onError: () => {
-                            setError(true);
-                            setLoading(false);
-                        },
-                    });
-                }}>
+                    })
+                }>
                 Create configuration
             </Button>
-        </form>
+
+            {error && 'TODO ERROR indicator'}
+        </Form>
     );
 };
 
