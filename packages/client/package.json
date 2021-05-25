@@ -52,7 +52,7 @@
         "@types/styled-components": "^4.4.2",
         "babel-loader": "^8.0.6",
         "babel-plugin-relay": "^8.0.0",
-        "browserslist": "^4.8.6",
+        "browserslist": "^4.16.5",
         "clean-webpack-plugin": "^3.0.0",
         "css-loader": "^3.4.2",
         "deploy-aws-s3-cloudfront": "^2.3.1",
