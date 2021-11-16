@@ -19,7 +19,7 @@
     },
     "devDependencies": {
         "@types/aws-sdk": "^2.7.0",
-        "aws-sdk": "^2.625.0",
+        "aws-sdk": "^2.814.0",
         "serverless": "^1.52.2",
         "serverless-stack-output": "^0.2.3",
         "serverless-webpack": "^5.3.1",
