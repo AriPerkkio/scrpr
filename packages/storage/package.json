@@ -14,7 +14,7 @@
     },
     "dependencies": {
         "cfn-lambda": "^4.0.0",
-        "knex": "^0.19.4",
+        "knex": "^2.4.0",
         "pg": "^7.12.1"
     },
     "devDependencies": {

@@ -15,7 +15,7 @@
     "license": "ISC",
     "dependencies": {
         "apollo-server-lambda": "^2.14.2",
-        "knex": "^0.19.3",
+        "knex": "^2.4.0",
         "pg": "^7.12.1",
         "scrpr-storage": "1.0.0"
     },
